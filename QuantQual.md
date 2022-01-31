@@ -86,7 +86,7 @@ The GitHub version also has my (approximate) script inside
 ```
 
 :::notes
-I'll add the link to the chat now, but I'll also have Mihaela send it out after the meeting.
+I'll add the GitHub link to the chat now, but I'll also have Mihaela send it out after the meeting.
 :::
 
 
@@ -96,44 +96,104 @@ I'll add the link to the chat now, but I'll also have Mihaela send it out after 
 ## Regression
 
 :::notes
-So let's start with the fun one!
-
+So let's start with the fun one - regression!
+Every discipline uses their own terminology, so we'll get that out of the way first.
+The variable that we're trying to model is called the **target**.
+You may know this as the dependent variable or the response.
+Whatever you call it, this is generally what we're trying to make predictions for and usually shows up on the y axis.
+The features are the information we're trying to incorporate into our model to better predict the target.
+You may know them as explanatory or independent variables, or maybe as IVs.
 :::
 
 
 - The **Target** could be any number in a range.
     - A.k.a. dependent variable or response.
-- The **Features** could be any data type
-    - A.k.a. explantory or independent variables 
-
-*illustration*
-
-## Most things are linear models
-
-*illustration:* y v. x1 and y v. x2, mostly linear-looking, with slopes and intercepts labelled
+- The Features could be any data type
+    - A.k.a. explantory or independent variables (IVs)
 
 :::notes
-This is the blah
+For this example, we're going to use the Palmer Penguins dataset, which was collected at Palmer station in antarctica. 
+We have their body mass (in grams), which is going to be our target variable.
+We're trying to determine if penguins are getting better nutrition and/or less competition on different islands.
+We also know their bill length (mm) and their flipper length (mm). These penguins are one of three species, are found on one of three islands (with some overlap) and are either male or female. 
+
+Note to people reading the pdf: the data are from https://allisonhorst.github.io/palmerpenguins/ and all my analyses are done in R.
 :::
 
-## Linear models: intercepts
+| **mass**   | bill_len      | flipper_len      |species   |island    |sex    |
+|-----------:|--------------:|-----------------:|:---------|:---------|:------|
+|        3750|           39.1|               181|Adelie    |Torgersen |male   |
+|        3800|           35.3|               187|Adelie    |Biscoe    |female |
+|        4150|           42.0|               210|Gentoo    |Biscoe    |female |
+|        5350|           48.7|               222|Gentoo    |Biscoe    |male   |
+|        3725|           52.7|               197|Chinstrap |Dream     |male   |
+|        3750|           51.3|               197|Chinstrap |Dream     |male   |
+|        3400|           50.1|               190|Chinstrap |Dream     |female |
 
-- Exists to make the model fit better\newline
-- Not always interpretable
 
-## Mean-centering
+## Ethics: biosex versus gender
 
-*illustration:* not mean-centered -> mean centered
+- Chinstrap penguins have a higher-than-average occurence of homosexual behaviour.
+    - Tufts University, Feb 2021: "What’s With All the Gay Penguins?"\newline
+- Gentoo penguins have less rigid gender roles.
+    - NBC news, Sept 2019: "Gay penguins at London aquarium are raising 'genderless' chick"\newline
+- Adelie penguins of any gender all want to be like Adele
+    - \<Citation Needed\>
+
+
+\quad
+
+Always be aware that "biosex" is an imperfect measurement of gender roles.
+
+:::notes
+In any analysis, you'll likely run into ethical challenges.
+These are penguins, but that doesn't mean that the difference between biosex and gender isn't present.
+Understanding the data collection is paramount to a good analysis, and poor interpretations can lead to ethical quandries.
+:::
+
+## Intro to linear models
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/1-intro.png}
+\end{center}
+
+- Find the slope and intercept to best fit the cloud of points.
+    - Slope: rise over run.
+    - Intercept: the body mass when flipper length is 0.
+
+:::notes
+The main goal of linear regression is to find the slope and the intercept that best fit a cloud of points.
+In this plot, the slope represents how much the body mass increases with flipper length.
+Generally, this is what we want from a regression - how does the target change with the features?
+The intercept represents the weight of the penguin when the flipper length is 0.
+Don't think too much about that - the intercept is just a mathematical requirement for building a line.
+:::
+
+
+## A **Mean**ingful intercept
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/2-center.png}
+\end{center}
+
+- Subtract the average flipper length from each individual flipper length.
+    - The intercept is the body mass at the average flipper length!
+    - This also helps with the underlying math.
 
 ## Linear models: slopes
 
-*illustration: one unit increase in x1*
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/3-slope.png}
+\end{center}
 
-For every one unit increase in x1, y goes up by blah.
+
+
+
 
 ## Binary Features
 
-Suppose x1 is labelled 0 or 1. 
+\centering
+Suppose we have a variable that is labelled either 0 or 1. 
 
 What does the slope represent?
 
@@ -149,6 +209,7 @@ But how good is our model?
 *illustration:* error
 
 :::notes
+
 :::
 
 ## Residual plots
