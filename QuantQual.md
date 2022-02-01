@@ -180,14 +180,26 @@ Don't think too much about that - the intercept is just a mathematical requireme
     - The intercept is the body mass at the average flipper length!
     - This also helps with the underlying math.
 
+:::notes
+The intercept can, however, be made to be meaningful. 
+If you subtract the mean value from each of the values of the feature, then "0" is the new mean value!
+Now the intercept is the value of the target at the average value of the response.
+:::
+
+
 ## Linear models: slopes
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/3-slope.png}
 \end{center}
 
+Next steps:\vspace{-3mm}
 
-
+:::notes
+While the intercept can be modified so that it is meaningful, the slope is almost always meaningful for any analysis.
+The value of the slope represents the relationship between the features and the response. 
+Most of the time that we're doing a linear regression, this is what we want.
+:::
 
 
 ## Binary Features
@@ -197,10 +209,15 @@ Suppose we have a variable that is labelled either 0 or 1.
 
 What does the slope represent?
 
+:::notes
+t-tests are actually just linear regression in disguise!
+ANOVA and ANCOVA are too!
+:::
+
 ## The story so far
 
-- Intercept is a mathematical necessity
-- Slopes answer our questions
+- The Intercept is a mathematical necessity
+- The Slope answers our questions
 
 But how good is our model?
 
@@ -240,7 +257,26 @@ It's all just linear!
 
 This is hard
 
+## Learning Linear Models
+
+0. Start a discovery journalism document
+1. A basic introduction to R or Python.
+2. A tutorial on data cleaning and visualization
+    - Python Data Science Handbook
+    - R for Data Science
+3. A tutorial on linear models
+    - Code everything in your language of choice!
+4. Write a self-tutorial
+
 # Machine Learning
+
+## What is Machine Learning?
+
+Anything that tries to get information from data!
+
+\quad
+
+- Linear regression is machine learning
 
 ## Lasso Regression
 
