@@ -68,7 +68,7 @@ I'm going to focus on linear regression, which is an analysis technique that can
 I'll briefly go over a few other techniques that work for numbers in a range.
 I'll also talk about classification problems, which is when the thing we're modelling can only be one of a handful of numbers.
 I'll talk about qualitative analysis, but mostly from a data scientist's perspective.
-Finally, I'll do my best to get you started on learning your own analysis.
+Finally, I'll do my best to get you started on learning your own analysis, and hopefully convince you that all this isn't that scary.
 There are lots of resources on campus and across the internet, but there are some caveats with all of those.
 :::
 
@@ -90,10 +90,10 @@ I'll add the GitHub link to the chat now, but I'll also have Mihaela send it out
 :::
 
 
-# Quantitative
+# Regression
 
 
-## Regression
+## Terminology
 
 :::notes
 So let's start with the fun one - regression!
@@ -272,29 +272,51 @@ This is hard
 
 ## What is Machine Learning?
 
+Statistics, but done by a computer scientist...
+
+OR
+
 Anything that tries to get information from data!
 
 \quad
 
-- Linear regression is machine learning
+This includes linear regression!
 
-## Lasso Regression
+:::notes
+There are tons opinions on what counts as machine learning
+Most definitions have some variation on "getting information from data", but each definition will have different caveats or inclusions.
 
-- It's like linear regression, but it automatically removes features.
+:::
+ 
 
-## xgBoost
+## Regression in Machine Learning
 
-Remember the residual plots?
+- **Lasso Regression**
+    - It's like linear regression, but it automatically removes features.
+    - Related: Ridge regression, ElasticNet
+- **xgBoost**
+    - Remember the residual plots? What if we fit a regression to those residuals?
+- **Neural Nets**
+    - ...
 
-What if we fit a regression to those residuals?
 
 ## Neural Nets 
 
 
+# Classification
 
+## Binary Target
 
+*illustration:* penguins data again
 
+:::notes
+Let's return to the penguins data set.
+The original study intended to quantify the sexual dimorphism, so let's focus on that.
+In this case, the biosex is either male or female - it can only be one of these two things, which is why it's called binary.
+It may seem strange to try and predict the biosex of the penguins since that's something we can fairly easily check, but knowing what factors differentiate the two can tell us a lot about the biological, sociological, and environmental factors affecting penguins.
+:::
 
+## 
 
 
 
