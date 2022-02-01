@@ -34,11 +34,16 @@ For instance, the Dish With One Spoon Covenant Wampum is not an "Indigenous Thin
 
 ## About Me
 
-- B.Sc. Math (Laurier)
-- M.Sc. Stats/Biostats
-- Ph.D. Stats
-- Postdoc - bioinformatics and data science
-- Music, reading, outdoorsy stuff
+- Education
+    - B.Sc. Math (Laurier)
+    - M.Sc. Stats/Biostats
+    - Ph.D. Stats\newline
+- Work
+    - Postdoc - SARS-CoV-2 in wastewater
+    - Public Health Agency of Canada\newline
+- Life
+    - Music, reading, outdoorsy stuff
+    - Crying about the housing market
 
 :::notes
 A little about me before we begin. 
@@ -186,10 +191,6 @@ Don't think too much about that - the intercept is just a mathematical requireme
 \includegraphics[width=0.8\textwidth]{figs/3-slope.png}
 \end{center}
 
-
-
-
-
 ## Binary Features
 
 \centering
@@ -206,19 +207,34 @@ But how good is our model?
 
 ## The most important part!
 
-*illustration:* error
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/4-error.png}
+\end{center}
+
+- The line will never go through every point perfectly!
+- Know where the model fails can tell you everything!
 
 :::notes
 
 :::
 
-## Residual plots
+## Residual plots: residuals versus predicted
 
-*illustration:* the subtle sine curve that I sometimes show
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/5-resid.png}
+\end{center}
 
-## Residual plots
+- A perfect residual plot should show no pattern.
+- This plot looks like there's a slight pattern...
 
-*illustration:* some interesting relationship between features
+## The pattern
+
+Each species has a slightly different relationship!!!
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/6-species.png}
+\end{center}
 
 ## Putting it all together
 
