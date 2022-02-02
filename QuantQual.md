@@ -397,3 +397,64 @@ If we label any penguin with Flipper $<$ 198 as female:
 \includegraphics[width=0.8\textwidth]{figs/11-SVM5.png}
 \end{center}
 
+# Dimension Reduction
+
+## Motivation
+
+
+
+# Qualitative
+
+## Qualitative Data
+
+Quality: the properties/characteristics of a thing (not numbers)
+
+\quad
+
+- Survey responses 
+    - "A lot of people seem to talk about painful things ..."\newline
+- Categories
+    - "Registered democrats tend to have these qualities ..."\newline
+- Texts
+    - "The grammar in this act is different from Shakespeare's usual style ..."\newline
+- Concepts
+    - "These documents could be categorized by their use of ..."
+
+## Qualitative Data **Analysis**
+
+- Fully manual: read everything, pay attention, take notes, compare.\newline
+- Some computer: search within documents, word clouds, etc.
+    - Audio/image/video transcription\newline
+- Much computer: **Natural Language Processing**
+    - It's machine learning, but for words!
+
+## Code is perfect and English is awful
+
+- It's cold outside, yes?
+- It's cold outside, no?
+
+\quad
+
+Sometimes, yes and no mean the same thing.
+
+How the heck does a computer have a chance?!?
+
+## TF-IDF: Who wrote the Op-Ed?
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/tfidf.png}
+\end{center}
+
+\small
+Source: \url{http://varianceexplained.org/r/op-ed-text-analysis/}
+
+## Sentiment Analysis: Trump Uses an Android
+
+\begin{center}
+\includegraphics[width=0.75\textwidth]{figs/sentiment.png}
+\end{center}
+
+\small
+Source: \url{http://varianceexplained.org/r/trump-tweets/}
+
+
