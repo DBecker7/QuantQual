@@ -336,19 +336,42 @@ Most definitions have some variation on "getting information from data", but eac
 
 ## Binary Target
 
-*illustration:* penguins data again
+
+*Illustratio:* pengtoo (once I can use my mouse again.)
 
 :::notes
 Let's return to the penguins data set.
 The original study intended to quantify the sexual dimorphism, so let's focus on that.
 In this case, the biosex is either male or female - it can only be one of these two things, which is why it's called binary.
-It may seem strange to try and predict the biosex of the penguins since that's something we can fairly easily check, but knowing what factors differentiate the two can tell us a lot about the biological, sociological, and environmental factors affecting penguins.
+It may seem strange to try and predict the biosex of the penguins since that's something we can fairly easily check, but by knowing what factors make better predictions we can learn a lot about the biological, sociological, and environmental factors affecting penguins.
 :::
 
-## 
+## Choosing between two options
 
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/7-SVM.png}
+\end{center}
 
+- When Flipper Length is below 198, most are female.
+- This is called SVM, or Support Vector Machines
 
+## More dimensions!
 
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/8-SVM2.png}
+\end{center}
 
+- With more information we can fit a better model!
+- ...
 
+## ... but there's a reason I only used Gentoo
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/9-SVM3.png}
+\end{center}
+
+## Three categories: Species
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/10-SVM4.png}
+\end{center}
