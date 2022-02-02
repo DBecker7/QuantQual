@@ -1,5 +1,7 @@
 library(ggplot2)        # Pretty plots
-theme_set(theme_bw())   # Even prettier plots
+theme_set(theme_bw(base_size = 19))   # Even prettier plots
+png_width = 800
+png_height = 500
 library(patchwork)      # Put pretty plots together
 #devtools::install_github("nicolash2/ggbrace")
 library(ggbrace)        # Annotate a brace
@@ -11,7 +13,7 @@ penguins <- filter(palmerpenguins::penguins,
     !is.na(flipper_length_mm), !is.na(body_mass_g))
 library(knitr)          # Pretty tables (kable() function)
 library(broom)          # better linear model output
-library(e1071)
+library(e1071)          # svm function
 
 
 
@@ -30,7 +32,7 @@ penguins %>%
 lm_flip <- lm(body_mass_g ~ flipper_length_mm, data = penguins)
 x_flip <- seq(170, 235, by = 5)
 y_flip <- predict(lm_flip, newdata = list(flipper_length_mm = x_flip))
-png(here("figs", "1-intro.png"), height = 300, width = 600)
+png(here("figs", "1-intro.png"), height = png_height, width = png_width)
 gg_flip <- ggplot() + 
     geom_point(data = penguins,
         mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
@@ -49,7 +51,7 @@ penguins$flipper_length_centered <- penguins$flipper_length_mm -
 lm_flip <- lm(body_mass_g ~ flipper_length_centered, data = penguins)
 x_flip <- seq(170, 235, by = 5) - mean(penguins$flipper_length_mm, na.rm = TRUE)
 y_flip <- predict(lm_flip, newdata = list(flipper_length_centered = x_flip))
-png(here("figs", "2-center.png"), height = 300, width = 600)
+png(here("figs", "2-center.png"), height = png_height, width = png_width)
 gg_flip <- ggplot() + 
     geom_point(data = penguins,
         mapping = aes(x = flipper_length_centered, y = body_mass_g)) +
@@ -69,7 +71,7 @@ x_flip <- seq(170, 235, by = 5)
 y_flip <- predict(lm_flip, newdata = list(flipper_length_mm = x_flip))
 x_pred <- c(190, 191)
 y_pred <- predict(lm_flip, newdata = list(flipper_length_mm = x_pred))
-png(here("figs", "3-slope.png"), height = 300, width = 600)
+png(here("figs", "3-slope.png"), height = png_height, width = png_width)
 gg_flip <- ggplot() + 
     geom_point(data = penguins,
         mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
@@ -99,7 +101,7 @@ x_true <- penguins$flipper_length_mm[43]
 y_true <- penguins$body_mass_g[43]
 lm_flip <- lm(body_mass_g ~ flipper_length_mm, data = penguins)
 y_pred <- predict(lm_flip, newdata = list(flipper_length_mm = x_true))
-png(here("figs", "4-error.png"), height = 300, width = 600)
+png(here("figs", "4-error.png"), height = png_height, width = png_width)
 ggplot() + 
     geom_point(data = penguins,
         mapping = aes(x = flipper_length_mm, y = body_mass_g)) +
@@ -133,7 +135,7 @@ dev.off()
 
 # Quantitative - Residual plots: residuals versus predicted
 lm_flip <- augment(lm_flip)
-png(here("figs", "5-resid.png"), height = 300, width = 600)
+png(here("figs", "5-resid.png"), height = png_height, width = png_width)
 ggplot(lm_flip) +
     aes(x = .fitted, y = .resid) + 
     geom_point() + 
@@ -147,7 +149,7 @@ dev.off()
 
 
 # Quantitative: The pattern
-png(here("figs", "6-species.png"), height = 300, width = 600)
+png(here("figs", "6-species.png"), height = png_height, width = png_width)
 gg_pat1 <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, colour = species)) +
     geom_point() +
     geom_smooth(method = "lm", formula = "y~x", se = FALSE) +
@@ -165,15 +167,18 @@ dev.off()
 
 # Classification: Binary Target
 pengtoo <- filter(penguins, !is.na(sex), species == "Gentoo")
-pengtoo %>% slice(1:7) %>% 
+pengtoo %>% slice(1, 10, 28, 35, 46, 59) %>% 
+    select(body_mass_g,                     # Target variable
+        bill_length_mm, flipper_length_mm,  # Numerical features
+        species, island, sex) %>%           # Categorical features
     kable(format = "pipe")
 
 # Classification: Choosing between two options
 cutoff <- 198
-png(here("figs", "7-SVM.png"), height = 300, width = 600)
+png(here("figs", "7-SVM.png"), height = png_height, width = png_width)
 ggplot(penguins, 
         aes(x = flipper_length_mm, y = sex, colour = sex)) +
-    geom_jitter() +
+    geom_jitter(height = 0.25) +
     scale_colour_manual(values = c("forestgreen", "darkorchid")) +
     labs(x = "Flipper Length (mm)", y = "Sex",
         colour = "Sex", 
@@ -195,15 +200,23 @@ ggplot(penguins,
         xend = min(penguins$flipper_length_mm[penguins$sex == "male"],
             na.rm = TRUE),  
         colour = "darkorchid", arrow = arrow()) +
-    annotate("text", x = cutoff, y = 1, hjust = 1.2, vjust = 1.2,
-        label = sum(penguins$flipper_length_mm >= cutoff & penguins$sex == "male"), size = 10) +
     annotate("text", x = cutoff, y = 1, hjust = -0.2, vjust = 1.2,
-        label = sum(penguins$flipper_length_mm < cutoff & penguins$sex == "male"), size = 10) +
-    annotate("text", x = cutoff, y = 2, hjust = -0.2, vjust = 1.2,
-        label = sum(penguins$flipper_length_mm < cutoff & penguins$sex == "female"), size = 10) +
+        label = sum(penguins$flipper_length_mm >= cutoff & penguins$sex == "female"), 
+        size = 10) +
+    annotate("text", x = cutoff, y = 1, hjust = 1.2, vjust = 1.2,
+        label = sum(penguins$flipper_length_mm < cutoff & penguins$sex == "female"), 
+        size = 10) +
     annotate("text", x = cutoff, y = 2, hjust = 1.2, vjust = 1.2,
-        label = sum(penguins$flipper_length_mm >= cutoff & penguins$sex == "female"), size = 10)
+        label = sum(penguins$flipper_length_mm < cutoff & penguins$sex == "male"), 
+        size = 10) +
+    annotate("text", x = cutoff, y = 2, hjust = -0.2, vjust = 1.2,
+        label = sum(penguins$flipper_length_mm >= cutoff & penguins$sex == "male"), 
+        size = 10) +
+    theme(legend.position = "none")
 dev.off()
+
+table(penguins$sex, penguins$flipper_length_mm >= 198) %>%
+    kable()
 
 
 # Classification: More dimensions!
@@ -215,7 +228,7 @@ beta0 <- svm_flip$rho
 intercept <- beta0 / beta[2]
 slope <- -beta[1] / beta[2]
 
-png(here("figs", "8-SVM2.png"), height = 300, width = 600)
+png(here("figs", "8-SVM2.png"), height = png_height, width = png_width)
 ggplot(pengtoo) +
     aes(x = flipper_length_mm, y = body_mass_g, colour = sex) +
     geom_point() +
@@ -227,7 +240,7 @@ ggplot(pengtoo) +
 dev.off()
 
 
-png(here("figs", "9-SVM3.png"), height = 300, width = 600)
+png(here("figs", "9-SVM3.png"), height = png_height, width = png_width)
 ggplot(penguins) +
     aes(x = flipper_length_mm, y = body_mass_g, colour = sex) +
     geom_point() +
@@ -242,26 +255,26 @@ dev.off()
 
 svm_species <- svm(factor(species) ~ flipper_length_mm + body_mass_g, 
     data = penguins, 
-    kernel = "linear", method = "C-classification", cost = 10)
+    kernel = "linear")
 species_coords <- expand.grid(
     flipper_length_mm = seq(
         from = floor(min(penguins$flipper_length_mm)),
         to = ceiling(max(penguins$flipper_length_mm)),
-        length.out = 70
+        length.out = 2^9
     ), 
     body_mass_g = seq(
         from = floor(min(penguins$body_mass_g)),
         to = ceiling(max(penguins$body_mass_g)),
-        length.out = 70
+        length.out = 2^9
     ) 
 )
 species_preds <- predict(svm_species, newdata = species_coords)
-png(here("figs", "10-SVM4.png"), height = 300, width = 600)
+png(here("figs", "10-SVM4.png"), height = png_height, width = png_width)
 ggplot() + 
     geom_tile(
-        mapping = aes(x = isle_coords$flipper_length_mm, 
-            y = isle_coords$body_mass_g,
-            fill = isle_preds),
+        mapping = aes(x = species_coords$flipper_length_mm, 
+            y = species_coords$body_mass_g,
+            fill = species_preds),
         alpha = 0.7) +
     geom_point(data = penguins,
         mapping = aes(x = flipper_length_mm,
@@ -277,3 +290,45 @@ ggplot() +
         fill = "Species",
         title = "Three class classification")
 dev.off()
+
+
+
+svm_species <- svm(factor(species) ~ flipper_length_mm + body_mass_g, 
+    data = penguins, 
+    kernel = "sigmoid")
+species_coords <- expand.grid(
+    flipper_length_mm = seq(
+        from = floor(min(penguins$flipper_length_mm)),
+        to = ceiling(max(penguins$flipper_length_mm)),
+        length.out = 2^9
+    ), 
+    body_mass_g = seq(
+        from = floor(min(penguins$body_mass_g)),
+        to = ceiling(max(penguins$body_mass_g)),
+        length.out = 2^9
+    ) 
+)
+species_preds <- predict(svm_species, newdata = species_coords)
+png(here("figs", "11-SVM5.png"), height = png_height, width = png_width)
+ggplot() + 
+    geom_tile(
+        mapping = aes(x = species_coords$flipper_length_mm, 
+            y = species_coords$body_mass_g,
+            fill = species_preds),
+        alpha = 0.7) +
+    geom_point(data = penguins,
+        mapping = aes(x = flipper_length_mm,
+            y = body_mass_g),
+        size = 2) +
+    geom_point(data = penguins,
+        mapping = aes(x = flipper_length_mm,
+            y = body_mass_g,
+            colour = species),
+        show.legend = FALSE) +
+    labs(x = "Flipper Lenght (mm)",
+        y = "Body Mass (g)",
+        fill = "Species",
+        title = "Three class classification")
+dev.off()
+
+

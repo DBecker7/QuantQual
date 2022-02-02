@@ -10,13 +10,6 @@ colortheme:
 ---
 
 
-<!---
-TODO:
-- Consistent title case
-- 
-
---->
-
 # Introduction
 
 ## Land Acknowledgement
@@ -337,7 +330,14 @@ Most definitions have some variation on "getting information from data", but eac
 ## Binary Target
 
 
-*Illustratio:* pengtoo (once I can use my mouse again.)
+| mass       | bill_len      | flipper_len      |species |island |**sex**|
+|-----------:|--------------:|-----------------:|:-------|:------|:------|
+|        4500|           46.1|               211|Gentoo  |Biscoe |female |
+|        5150|           46.8|               215|Gentoo  |Biscoe |male   |
+|        4600|           48.2|               210|Gentoo  |Biscoe |female |
+|        5400|           48.4|               220|Gentoo  |Biscoe |male   |
+|        4200|           45.5|               210|Gentoo  |Biscoe |female |
+|        5550|           50.4|               224|Gentoo  |Biscoe |male   |
 
 :::notes
 Let's return to the penguins data set.
@@ -354,6 +354,21 @@ It may seem strange to try and predict the biosex of the penguins since that's s
 
 - When Flipper Length is below 198, most are female.
 - This is called SVM, or Support Vector Machines
+
+## But how were we wrong?
+
+If we label any penguin with Flipper $<$ 198 as female:
+
+|       | Flipper $<$ 198| Flipper $\ge$ 198|
+|:------|-----:|----:|
+|Male   |    74|   94|
+|Female |    97|   68|
+
+- Many different metrics to calculate!
+    - When we label them female, they're actually female 97/(74+97)=56\% of the time.
+    - When they're actually female, we label them female 97/(68+97)=58\% of the time.
+- This is a **Confusion Matrix**.
+
 
 ## More dimensions!
 
@@ -375,3 +390,10 @@ It may seem strange to try and predict the biosex of the penguins since that's s
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/10-SVM4.png}
 \end{center}
+
+## It doesn't need to be linear!
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/11-SVM5.png}
+\end{center}
+
