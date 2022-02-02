@@ -342,8 +342,8 @@ It may seem strange to try and predict the biosex of the penguins since that's s
 \includegraphics[width=0.8\textwidth]{figs/7-SVM.png}
 \end{center}
 
-- When Flipper Length is above 198, most are male.
-- Below 198, most are female.
+- When Flipper Length is below 198, most are female.
+- This is called SVM, or Support Vector Machines
 
 ## More dimensions!
 
@@ -360,6 +360,8 @@ It may seem strange to try and predict the biosex of the penguins since that's s
 \includegraphics[width=0.8\textwidth]{figs/9-SVM3.png}
 \end{center}
 
+## Three categories: Species
 
-
-
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/10-SVM4.png}
+\end{center}

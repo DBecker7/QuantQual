@@ -6,6 +6,9 @@ library(ggbrace)        # Annotate a brace
 library(dplyr)          # Data cleaning
 library(here)           # Finding files
 library(palmerpenguins) # Data
+penguins <- filter(palmerpenguins::penguins,
+    !is.na(sex), !is.na(species), 
+    !is.na(flipper_length_mm), !is.na(body_mass_g))
 library(knitr)          # Pretty tables (kable() function)
 library(broom)          # better linear model output
 library(e1071)
@@ -233,4 +236,44 @@ ggplot(penguins) +
         title = "Above the line = male, below = female",
         colour = "Sex") +
     geom_abline(intercept = intercept, slope = slope)
+dev.off()
+
+
+
+svm_species <- svm(factor(species) ~ flipper_length_mm + body_mass_g, 
+    data = penguins, 
+    kernel = "linear", method = "C-classification", cost = 10)
+species_coords <- expand.grid(
+    flipper_length_mm = seq(
+        from = floor(min(penguins$flipper_length_mm)),
+        to = ceiling(max(penguins$flipper_length_mm)),
+        length.out = 70
+    ), 
+    body_mass_g = seq(
+        from = floor(min(penguins$body_mass_g)),
+        to = ceiling(max(penguins$body_mass_g)),
+        length.out = 70
+    ) 
+)
+species_preds <- predict(svm_species, newdata = species_coords)
+png(here("figs", "10-SVM4.png"), height = 300, width = 600)
+ggplot() + 
+    geom_tile(
+        mapping = aes(x = isle_coords$flipper_length_mm, 
+            y = isle_coords$body_mass_g,
+            fill = isle_preds),
+        alpha = 0.7) +
+    geom_point(data = penguins,
+        mapping = aes(x = flipper_length_mm,
+            y = body_mass_g),
+        size = 2) +
+    geom_point(data = penguins,
+        mapping = aes(x = flipper_length_mm,
+            y = body_mass_g,
+            colour = species),
+        show.legend = FALSE) +
+    labs(x = "Flipper Lenght (mm)",
+        y = "Body Mass (g)",
+        fill = "Species",
+        title = "Three class classification")
 dev.off()
