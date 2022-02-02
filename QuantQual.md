@@ -9,6 +9,14 @@ colortheme:
     - spruce
 ---
 
+
+<!---
+TODO:
+- Consistent title case
+- 
+
+--->
+
 # Introduction
 
 ## Land Acknowledgement
@@ -112,7 +120,7 @@ You may know them as explanatory or independent variables, or maybe as IVs.
 
 
 - The **Target** could be any number in a range.
-    - A.k.a. dependent variable or response.
+    - A.k.a. dependent variable or response.\newline
 - The Features could be any data type
     - A.k.a. explantory or independent variables (IVs)
 
@@ -220,8 +228,10 @@ ANOVA and ANCOVA are too!
 
 ## The story so far
 
-- The Intercept is a mathematical necessity
+- The Intercept is a mathematical necessity\newline
 - The Slope answers our questions
+
+\quad
 
 But how good is our model?
 
@@ -259,10 +269,10 @@ Each species has a slightly different relationship!!!
 ## Putting it all together
 
 1. Get data
-    - Data cleaning is the hardest part.
+    - Data cleaning is the hardest part.\newline
 2. Plot data
-    - If you haven't plotted it, you're doing it wrong.
-3. Fit model
+    - If you haven't plotted it, you're doing it wrong.\newline
+3. Fit model\newline
 4. Check model
     - If you haven't plotted it, you're doing it wrong.
 
@@ -278,24 +288,24 @@ This is hard
 
 ## Learning Linear Models
 
-0. Start a discovery journalism document
-1. A basic introduction to R or Python.
+0. Start a discovery journalism document\newline
+1. A basic introduction to R or Python.\newline
 2. A tutorial on data cleaning and visualization
     - Python Data Science Handbook
-    - R for Data Science
-3. A tutorial on linear models
-    - Code everything in your language of choice!
+    - R for Data Science\newline
+3. A (non-code) tutorial on linear models
+    - Code everything in your language of choice!\newline
 4. Write a self-tutorial
 
 # Machine Learning
 
 ## What is Machine Learning?
 
-Statistics, but done by a computer scientist...
+- Statistics, but done by a computer scientist...
 
-OR
+\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad --OR--
 
-Anything that tries to get information from data!
+- Anything that tries to get information from data!
 
 \quad
 
@@ -312,9 +322,9 @@ Most definitions have some variation on "getting information from data", but eac
 
 - **Lasso Regression**
     - It's like linear regression, but it automatically removes features.
-    - Related: Ridge regression, ElasticNet
+    - Related: Ridge regression, ElasticNet\newline
 - **xgBoost**
-    - Remember the residual plots? What if we fit a regression to those residuals?
+    - Remember the residual plots? What if we fit a regression to those residuals?\newline
 - **Neural Nets**
     - ...
 
