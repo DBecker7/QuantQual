@@ -410,18 +410,23 @@ By combining features, we might:
 - Find out which features have similar effects on the target.\newline
 - Find hidden clusters
 
-## Principal Components
+## Principal Components Analysis (PCA)
 
-A *Principle Component* is a combination of the features.
+A *Principle Component* is a combination of the features (NOT target).
 
 Each component is unrelated to the others.
 
 \begin{align*}
 PC1 &= 0.55*bill\_length - 0.51*bill\_depth + 0.65*flipper\_length\\
 PC2 &= -0.65*bill\_length - 0.75*bill\_depth - 0.03*flipper\_length\\
-PC2 &= 0.51*bill\_length - 0.41*bill\_depth - 0.75*flipper\_length
+...&
 \end{align*}
 
+## Principle Components - clustering
+
+\begin{center}
+\includegraphics[width=\textwidth]{figs/12-PCA.png}
+\end{center}
 
 # Qualitative
 
