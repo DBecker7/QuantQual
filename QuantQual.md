@@ -401,6 +401,26 @@ If we label any penguin with Flipper $<$ 198 as female:
 
 ## Motivation
 
+Why use many features when few features do trick?
+
+\quad
+
+By combining features, we might:
+
+- Find out which features have similar effects on the target.\newline
+- Find hidden clusters
+
+## Principal Components
+
+A *Principle Component* is a combination of the features.
+
+Each component is unrelated to the others.
+
+\begin{align*}
+PC1 &= 0.55*bill\_length - 0.51*bill\_depth + 0.65*flipper\_length\\
+PC2 &= -0.65*bill\_length - 0.75*bill\_depth - 0.03*flipper\_length\\
+PC2 &= 0.51*bill\_length - 0.41*bill\_depth - 0.75*flipper\_length
+\end{align*}
 
 
 # Qualitative
@@ -440,20 +460,20 @@ Sometimes, yes and no mean the same thing.
 How the heck does a computer have a chance?!?
 
 ## TF-IDF: Who wrote the Op-Ed?
-
+<!---
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/tfidf.png}
 \end{center}
-
+--->
 \small
 Source: \url{http://varianceexplained.org/r/op-ed-text-analysis/}
 
 ## Sentiment Analysis: Trump Uses an Android
-
+<!---
 \begin{center}
 \includegraphics[width=0.75\textwidth]{figs/sentiment.png}
 \end{center}
-
+--->
 \small
 Source: \url{http://varianceexplained.org/r/trump-tweets/}
 

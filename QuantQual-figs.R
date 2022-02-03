@@ -14,6 +14,8 @@ penguins <- filter(palmerpenguins::penguins,
 library(knitr)          # Pretty tables (kable() function)
 library(broom)          # better linear model output
 library(e1071)          # svm function
+#library(devtools); install_github("vqv/ggbiplot")
+library(ggbiplot)       # For pca plots
 
 
 
@@ -335,3 +337,10 @@ dev.off()
 ggplot(penguins) +
     aes(x = bill_length_mm, y = bill_depth_mm) +
     geom_point()
+
+
+pca_peng <- prcomp(select(penguins, bill_length_mm, bill_depth_mm, flipper_length_mm),
+    center = TRUE, scale = TRUE)
+png(here::here("figs/12-PCA.png"), height = png_height, width = png_width)
+ggbiplot(pca_peng, ellipse = TRUE, groups = paste(penguins$species, penguins$sex, sep = " & "))
+dev.off()
