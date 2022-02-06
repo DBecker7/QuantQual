@@ -1,16 +1,18 @@
 ---
 title:
     - Quantitative and Qualitative Analysis
+subtitle: "What's out there and what you need to know."
 author:
-    - Devan Becker
+    - "Devan Becker\\newline Public Health Agency of Canada; National Microbiology Laboratory\\newline\\newline February 7th, 2022\\newline For Western Postdoctoral Scholars"
 theme:
-    - AnnArbor
+    - Szeged
 colortheme:
     - spruce
 ---
 
 
 # Introduction
+
 
 ## Land Acknowledgement
 
@@ -598,6 +600,8 @@ If we label any penguin with Flipper $<$ 198 as female:
     - When they're actually female, we label them female 97/(68+97)=58\% of the time.
 - This is a **Confusion Matrix**.
 
+See also: sensitivity, specificity, precision, recall, F1 score.
+
 
 ## More dimensions!
 
@@ -648,6 +652,10 @@ Unsupervised learning means *we don't know the labels*.
 
 ## K-means Clustering
 
+*Illustration:* Unlabelled plot
+
+- Pretend that Species info is *NOT* available.
+- How many clusters are there?
 
 
 
@@ -751,7 +759,22 @@ Source: \url{http://varianceexplained.org/r/trump-tweets/}
 All of the above can be based on Nueral Nets!
 
 
+# Wrap-Up
 
+## Summary
+
+1. GIGO
+2. Plot everything
+3. Learn to code
+4. Plot everything
+
+
+## Important hings we didn't cover
+
+- Inference versus Prediction
+- Version control (GitHub!)
+- Scrutinizing data
+- 
 
 
 
