@@ -14,6 +14,13 @@ colortheme:
 
 ## Land Acknowledgement
 
+<!---
+TODO: 
+    - Sentence case for all titles
+    - Better resolution neural net plot?
+    - Fix the "Error" plot
+--->
+
 UWO exists on the traditional territories of:
 
 - Anishinaabek
@@ -82,6 +89,7 @@ There are lots of resources on campus and across the internet, but there are som
 
 - Interrupt at any time\newline
 - All notes/links/resources are on GitHub\newline
+- Ask future questions in the PAW Slack chat\newline
 - I have allowed myself **ONE** equation. 
 
 \quad
@@ -113,7 +121,7 @@ You may know them as explanatory or independent variables, or maybe as IVs.
 
 
 - The **Target** could be any number in a range.
-    - A.k.a. dependent variable or response.\newline
+    - A.k.a. dependent variable or response.
 - The Features could be any data type
     - A.k.a. explantory or independent variables (IVs)
 
@@ -137,25 +145,6 @@ Note to people reading the pdf: the data are from https://allisonhorst.github.io
 |        3400|           50.1|               190|Chinstrap |Dream     |female |
 
 
-## Ethics: biosex versus gender
-
-- Chinstrap penguins have a higher-than-average occurence of homosexual behaviour.
-    - Tufts University, Feb 2021: "What’s With All the Gay Penguins?"\newline
-- Gentoo penguins have less rigid gender roles.
-    - NBC news, Sept 2019: "Gay penguins at London aquarium are raising 'genderless' chick"\newline
-- Adelie penguins of any gender all want to be like Adele
-    - \<Citation Needed\>
-
-
-\quad
-
-Always be aware that "biosex" is an imperfect measurement of gender roles.
-
-:::notes
-In any analysis, you'll likely run into ethical challenges.
-These are penguins, but that doesn't mean that the difference between biosex and gender isn't present.
-Understanding the data collection is paramount to a good analysis, and poor interpretations can lead to ethical quandries.
-:::
 
 ## Intro to linear models
 
@@ -204,7 +193,7 @@ Next steps:\vspace{-3mm}
 :::notes
 While the intercept can be modified so that it is meaningful, the slope is almost always meaningful for any analysis.
 The value of the slope represents the relationship between the features and the response. 
-Most of the time that we're doing a linear regression, this is what we want.
+Most of the time that we're doing a linear regression, this is what we want to quantify.
 :::
 
 ## Binary Features
@@ -215,8 +204,12 @@ Suppose we have a variable that is labelled either 0 or 1.
 What does the slope represent?
 
 :::notes
-t-tests are actually just linear regression in disguise!
-ANOVA and ANCOVA are too!
+The slope represents the change in the target for each one unit increase in the feature.
+Binary features only have one unit in between, so the increase in the target is the difference in the centres of the two groups.
+This means that t-tests are actually just linear regression in disguise!
+There's a difference in the variance calculation, but the underlying machinery works the same.
+As a side note, ANOVA and ANCOVA are also secretly linear models.
+In fact, fitting ANOVA in R involves fitting a linear model.
 :::
 
 ## The story so far
@@ -227,6 +220,14 @@ ANOVA and ANCOVA are too!
 \quad
 
 But how good is our model?
+
+:::notes
+Computers are really smart, but they're also really dumb.
+A computer will calculate the intercept and the slope for any data you throw at it - regardless of whether it's a good idea!
+There are many cases where linear models are not appropriate - such as when the target is categorical - but the computer computes anyway.
+That's why they call it a computer and not a thinker!
+Even if a linear model is appropriate, it doesn't mean your results will be good.
+:::
 
 ## The most important part!
 
@@ -239,7 +240,12 @@ But how good is our model?
 - Know where the model fails can tell you everything!
 
 :::notes
-
+When we fit a line, we can find the estimated value simply by looking at the height of the line.
+It would be extremely surprising if the line always hit every point!
+Instead, there's always going to be some measure of error. 
+Understanding these errors is the most important part of any modelling challenge - no matter what type of model you're using.
+Later, we'll see some models that use words as their input.
+Even with these models, knowing about the errors is the most important part!
 :::
 
 ## Residual plots: residuals versus predicted
@@ -251,6 +257,19 @@ But how good is our model?
 - A perfect residual plot should show no pattern.
 - This plot looks like there's a slight pattern...
 
+:::notes
+Rather than fitting every point, a perfect model is one that's wrong consistently.
+That is, the estimated values are not systematically different from the truth.
+This problem can happen when you have a pattern in the residuals, and the best way to do this is with a residual plot.
+
+The residual plot shows the errors on the y axis and the estimated values on the x axis.
+This may seem a bit strange; most people would expect to plot the errors against the features.
+We do it this way for two reasons:
+
+1. If there are a lot of features, it becomes very tedious to check every plot.
+2. There might be complicated interactions between features that are hard to see without considering many features.
+:::
+
 ## The pattern
 
 Each species has a slightly different relationship!!!
@@ -258,6 +277,12 @@ Each species has a slightly different relationship!!!
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/6-species.png}
 \end{center}
+
+:::notes
+Here's the problem: there are three different species of penguins, each with different physiology.
+For this application, we'd need to account for these differences in species.
+At this point, it's worth working through a textbook or a course on linear models. 
+:::
 
 ## Putting it all together
 
@@ -268,6 +293,13 @@ Each species has a slightly different relationship!!!
 3. Fit model\newline
 4. Check model
     - If you haven't plotted it, you're doing it wrong.
+
+:::notes
+Let's take a minute and look at what we've done so far.
+We started with some good clean data, but this is rarely an easy step.
+In fact, cleaing data is frequently the most time consuming part of an analysis!
+Furthermore, the quality of the data determines what you can say about the target. 
+:::
 
 ## Non-linear models?
 
@@ -324,6 +356,25 @@ Most definitions have some variation on "getting information from data", but eac
 
 ## Neural Nets 
 
+- What most people think of as ML.\newline
+- Loosely based on the way synapses work.\newline
+- Just a bunch of linear regressions
+
+## Neural Net Setup
+
+\begin{center}
+\includegraphics[width=\textwidth]{figs/NN.png}
+\end{center}
+
+
+## Are neural nets better than linear models
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figs/NNLM.png}
+\end{center}
+
+
+
 
 # Classification
 
@@ -346,6 +397,27 @@ In this case, the biosex is either male or female - it can only be one of these 
 It may seem strange to try and predict the biosex of the penguins since that's something we can fairly easily check, but by knowing what factors make better predictions we can learn a lot about the biological, sociological, and environmental factors affecting penguins.
 :::
 
+
+## Ethics: biosex versus gender
+
+- Chinstrap penguins have a higher-than-average occurence of homosexual behaviour.
+    - Tufts University, Feb 2021: "What’s With All the Gay Penguins?"\newline
+- Gentoo penguins have less rigid gender roles.
+    - NBC news, Sept 2019: "Gay penguins at London aquarium are raising 'genderless' chick"\newline
+- Adelie penguins of any gender all want to be like Adele
+    - \<Citation Needed\>
+
+
+\quad
+
+Always be aware that "biosex" is an imperfect measurement of gender roles.
+
+:::notes
+In any analysis, you'll likely run into ethical challenges.
+These are penguins, but that doesn't mean that the difference between biosex and gender isn't present.
+Understanding the data collection is paramount to a good analysis, and poor interpretations can lead to ethical quandries.
+:::
+
 ## Choosing between two options
 
 \begin{center}
@@ -354,6 +426,12 @@ It may seem strange to try and predict the biosex of the penguins since that's s
 
 - When Flipper Length is below 198, most are female.
 - This is called SVM, or Support Vector Machines
+
+:::notes
+Let's start with a simple model where we only use flipper length to try and guess the penguins' biosex.
+In this plot, I've separated the data into male and female and I added a vertical line at a flipper length of 198.
+For this model, we're just going to guess any penguin with a longer flipper than 198 is likely female.
+:::
 
 ## But how were we wrong?
 
@@ -447,9 +525,10 @@ Quality: the properties/characteristics of a thing (not numbers)
 
 ## Qualitative Data **Analysis**
 
-- Fully manual: read everything, pay attention, take notes, compare.\newline
+- Fully manual: read everything, pay attention, take notes, compare.
+    - I can't help you with this.\newline
 - Some computer: search within documents, word clouds, etc.
-    - Audio/image/video transcription\newline
+    - Audio/image/video transcription via neural networks\newline
 - Much computer: **Natural Language Processing**
     - It's machine learning, but for words!
 
@@ -481,5 +560,33 @@ Source: \url{http://varianceexplained.org/r/op-ed-text-analysis/}
 --->
 \small
 Source: \url{http://varianceexplained.org/r/trump-tweets/}
+
+## More Advanced Natural Language Processing
+
+- Parts of Speech
+    - Nouns, verbs, etc.\newline
+- Topic modelling
+    - Words show up in similar sentences\newline
+- Bag of Words (Word2Vec)
+    - How often are words used together?\newline
+
+\quad
+
+All of the above can be based on Nueral Nets!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
