@@ -13,8 +13,6 @@ colortheme:
 
 # Introduction
 
-## Front Matter
-
 ### Land Acknowledgement
 
 <!---
@@ -132,9 +130,7 @@ The most important part of any modelling endeavour is being humble about the res
 
 # Regression
 
-## Linear Models
-
-### Terminology
+### Linear Models
 
 :::notes
 So let's start with the fun one - regression!
@@ -482,6 +478,11 @@ People also think of them as being hopelessly complex black boxes, but they're a
 \includegraphics[width=\textwidth]{figs/NN.png}
 \end{center}
 
+- Each node is a linear model
+- The target node tells hidden nodes how they were wrong
+    - "Backpropagation"; recurrent neural network
+- Have to choose number of layers and nodes
+
 :::notes
 So here's a computer brain.
 There are som inputs, in this case the flipper length and the bill length, and these feed into something called a hidden layer.
@@ -530,9 +531,20 @@ Just like with linear models, we are stuck trying to decide on a model form.
 No.
 
 
-# Classification
+### ML and Ethics
 
-## Supervised Classification
+- ML finds patterns that exist
+    - It perpetuates existing patterns\newline
+- ML is hard to audit
+    - Is it just looking at peoples' race? Hard to say!
+    - Explainable AI (XAI)\newline
+- ML doesn't answer email
+    - Why did it make a certain decision?
+    - Ca't plead your case.
+
+\url{https://delphi.allenai.org/?a1=Using+AI+to+determine+ethics}
+
+# Classification
 
 ### Binary Target
 
@@ -666,8 +678,6 @@ Unsupervised learning means *we don't know the labels*.
 
 # Dimension Reduction
 
-## A quick overview
-
 ### Motivation
 
 Why use many features when few features do trick?
@@ -699,8 +709,6 @@ PC2 &= -0.65*bill\_length - 0.75*bill\_depth - 0.03*flipper\_length\\
 
 # Qualitative Analysis
 
-## Definitions?
-
 ### Qualitative Data
 
 Quality: the properties/characteristics of a thing (not numbers)
@@ -730,9 +738,9 @@ Quality: the properties/characteristics of a thing (not numbers)
 - It's cold outside, yes?
 - It's cold outside, no?
 
-\quad
-
 Sometimes, yes and no mean the same thing.
+
+\quad
 
 How the heck does a computer have a chance?!?
 
@@ -768,6 +776,8 @@ Source: \url{http://varianceexplained.org/r/trump-tweets/}
 All of the above can be based on Nueral Nets!
 
 
+
+
 # Meditative
 
 
@@ -779,17 +789,35 @@ All of the above can be based on Nueral Nets!
 3. Learn to code
 4. Plot everything
 
+### Learning Path
 
-### Important hings we didn't cover
+- Take notes on a basic coding tutorial\newline
+- Work through an *easy* passion project
+    - Visualize olympic medals (Kaggle)
+    - Basic linear model for bitcoin values
+- Backpropagate your new knowledge\newline
+- Write a tutorial for yourself, share it on GitHub.\newline
+- Search Twitter, follow relevant topics/people
 
-- Inference versus Prediction
-- Version control (GitHub!)
-- Scrutinizing data
-- 
+### Important things we didn't cover
 
+- **Data Cleaning** (don't use Excel)\newline
+- Inference versus Prediction\newline
+- Version control and best practices (GitHub!)\newline
+- Scrutinizing data\newline
 
+### R versus Python versus Other
 
+- R is stats focused
+    - Python has cutting edge machine learning and general purpose\newline
+- R has `dplyr` and `ggplot2`
+    - Python teaches/requires better coding skills\newline
+- RMarkdown is astounding
+    - Black holes were imaged in Jupyter\newline
+- Both will work for any analysis
+    - Use what your colleagues use
 
+FWIW, I used R for this workshop and code is available.
 
 
 
