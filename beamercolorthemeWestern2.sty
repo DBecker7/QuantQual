@@ -1,0 +1,69 @@
+% Modified from a file by Madhusudan Singh <madhusudan.singh@gmail.com>
+% Modified by Devan Becker
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+
+\mode<presentation>
+
+\definecolor{western}{RGB}{0,100,100} 
+%\definecolor{MSUgreen}{RGB}{0,102,51} % replace western with MSUgreen for spruce theme
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=western!80!gray}
+\setbeamercolor*{palette primary}{fg=western!60!black,bg=gray!30!white}
+\setbeamercolor*{palette secondary}{fg=western!70!black,bg=gray!15!white}
+\setbeamercolor*{palette tertiary}{bg=western!80!black,fg=gray!10!white}
+\setbeamercolor*{palette quaternary}{fg=western,bg=gray!5!white}
+
+\setbeamercolor*{sidebar}{fg=western,bg=gray!15!white}
+
+\setbeamercolor*{palette sidebar primary}{fg=western!10!black}
+\setbeamercolor*{palette sidebar secondary}{fg=white}
+\setbeamercolor*{palette sidebar tertiary}{fg=western!50!black}
+\setbeamercolor*{palette sidebar quaternary}{fg=gray!10!white}
+
+%\setbeamercolor*{titlelike}{parent=palette primary}
+\setbeamercolor{titlelike}{parent=palette primary,fg=western}
+\setbeamercolor{frametitle}{bg=gray!10!white}
+\setbeamercolor{frametitle right}{bg=gray!60!white}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+% my own added things - probably can be deleted
+%\useinnertheme[shadow]{rounded}
+%\useoutertheme[subsection=true]{smoothbars}
+\defbeamertemplate*{footline}{shadow theme}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fil,rightskip=.3cm]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\hfill Devan Becker - dbecker7@uwo.ca
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\usebeamercolor[white]{}University of Western Ontario\hfill\insertframenumber\,/\,\inserttotalframenumber%
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\setbeamertemplate{itemize items}[circle]
+\setbeamercolor{itemize item}{fg=western}
+\setbeamercolor{itemize subitem}{fg=western}
+
+\setbeamertemplate{section number projected}[circle]
+\setbeamercolor{section number projected}{fg=white, bg=western}
+\setbeamercolor{section in toc}{fg=western}
+\setbeamercolor{sections/subsections in toc}{fg=western}
+\setbeamertemplate{sections/subsections in toc}[circle]
+
+\setbeamercolor{item projected}{bg=western}
+\setbeamertemplate{enumerate items}[circle]
+\setbeamercolor{enumerate items}{fg=white, bg=western}
+\setbeamercolor{enumerate subitem}{fg=western}
+
+
+\mode
+<all>

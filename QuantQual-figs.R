@@ -16,7 +16,7 @@ library(broom)          # better linear model output
 library(e1071)          # svm function
 #library(devtools); install_github("vqv/ggbiplot")
 library(ggbiplot)       # For pca plots
-
+library(neuralnet)
 
 
 # Quantitative - Regression 
@@ -355,4 +355,40 @@ gg_pca <- ggbiplot(pca_peng, ellipse = TRUE, groups = paste(penguins$species, pe
         y = "Second Principal Component")
 gg_raw + gg_pca + 
     plot_layout(guides = "collect", width = c(0.75, 1.5))
+dev.off()
+
+
+# Neural Net
+peng2 <- penguins %>%
+    select(body_mass_g, flipper_length_mm, bill_depth_mm) %>%
+    mutate(body_mass_g = scale(body_mass_g),
+        flipper_length_mm = scale(flipper_length_mm),
+        bill_depth_mm = scale(bill_depth_mm))
+nn_peng <- neuralnet(body_mass_g ~ flipper_length_mm + bill_depth_mm, 
+    data = peng2,
+    hidden = 5)
+png(here::here("figs/NN.png"), height = 0.5*png_height, width = 0.5*png_width)
+plot(nn_peng, rep = "best")
+dev.off()
+
+peng_nn <- peng2
+nn_pred <- neuralnet::compute(nn_peng, 
+    peng2[, c("flipper_length_mm", "bill_depth_mm")])
+peng_nn$pred <- nn_pred$net.result
+peng_nn$model = "Neural Net"
+peng_lm <- peng2
+peng_lm$pred <- predict(
+    lm(body_mass_g ~ flipper_length_mm + bill_depth_mm,
+        data = peng2), 
+    newdata = peng2[, c("flipper_length_mm", "bill_depth_mm")]
+    )
+peng_lm$model <- "Linear Model"
+peng3 <- bind_rows(peng_nn, peng_lm)
+png(here::here("figs/NNLM.png"), height = png_height, width = 1.5*png_width)
+ggplot(peng3) +
+    aes(x = body_mass_g, y = pred,
+        colour = model) +
+    geom_point() +
+    labs(x = "True Value", y = "Predicted Value",
+        colour = NULL)
 dev.off()
