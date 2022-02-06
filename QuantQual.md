@@ -19,6 +19,7 @@ TODO:
     - Sentence case for all titles
     - Better resolution neural net plot?
     - Fix the "Error" plot
+    - Plot of the data *before* I start modelling.
 --->
 
 UWO exists on the traditional territories of:
@@ -104,6 +105,29 @@ I'll add the GitHub link to the chat now, but I'll also have Mihaela send it out
 :::
 
 
+# Analysis in General
+
+## Foreshadowing
+
+Keep an eye out for the following concepts:
+
+1. Garbage In, Garbage Out (GIGO)
+2. Numerical summaries lie - you need plots!
+3. Models are models.
+4. Models are wrong.
+
+:::notes
+No matter what kind of analysis you are doing, there are some things in common.
+First is GIGO - your data limit what you can do with your model.
+Second, looking at numbers alone will only tell you part of the story.
+Get in the habit of plotting everything you come across.
+Third is the tautology that all models are models.
+In most software, spending time learning how one model works will help you understand many other different models.
+For instance, linear models and neural networks have almost the same syntax in R.
+Finally, come to terms with the fact that any analysis you do will be imperfect.
+The most important part of any modelling endeavour is being humble about the results and acknowledging where and why it deviates from the truth.
+:::
+
 # Regression
 
 
@@ -188,12 +212,28 @@ Now the intercept is the value of the target at the average value of the respons
 \includegraphics[width=0.8\textwidth]{figs/3-slope.png}
 \end{center}
 
-Next steps:\vspace{-3mm}
-
 :::notes
 While the intercept can be modified so that it is meaningful, the slope is almost always meaningful for any analysis.
 The value of the slope represents the relationship between the features and the response. 
 Most of the time that we're doing a linear regression, this is what we want to quantify.
+:::
+
+## A **SD**ingful slope
+
+*illustration:* scaling the x values
+
+- Subtract mean flipper length from each individual flipper length
+- Divide by the standard deviation. 
+
+This is called **scaling** the feature.
+
+:::notes
+Similar to a **meaning**ingful intercerpt, we have an **SD**ingful slope.
+Recall that the slope represents the increase in the target for a one unit increase in the feature.
+When we divide the feature by the standard deviation before the modelling step, we make it so one unit represents one standard deviation.
+Becaues of this, the slopes of different features can easily be compared!
+When we mean-center and divide by the standard deviation, we call that "scaling".
+For some machine learning techniques, this is absolutely necessary.
 :::
 
 ## Binary Features
@@ -299,28 +339,76 @@ Let's take a minute and look at what we've done so far.
 We started with some good clean data, but this is rarely an easy step.
 In fact, cleaing data is frequently the most time consuming part of an analysis!
 Furthermore, the quality of the data determines what you can say about the target. 
+We plotted the data and saw that our assumed model form looks more-or-less appropriate, so we went ahead and fit a model.
+You might notice that I didn't talk too much about actually fitting the model.
+This is because that step is quite easy once you're comfortable with the software that you use.
+The hard part is making sure that the model you fit is the model that you want.
+In this example, I have a long way to go!
 :::
 
 ## Non-linear models?
 
 *illustration:* sine, polynomial, spline smoothing
 
-It's all just linear!
+These are all just linear!
 
 ## Feature Selection
 
-This is hard
+- Including all of your features can be bad.
+    - Correlated features
+    - Model complexity
+    - Variance inflation\newline
+- Instead, only choose the important ones.
+
+Advice: plot everything, model what you think is correlated, check your results.
+
+:::notes
+When I talk about making sure your model has the best errors, I'm speaking in reference to models with different features.
+For instance, in this example I had both bill length and bill depth.
+These two features are measuring very similar things, and including both in a model may actually make you less able to describe the releationship with body mass.
+It also makes the model more complex, and a simpler model is better for interpretation.
+When two features are highly correlated, the model can't tell which one is better to use.
+This raises the variance of the slope terms, which makes it hard to make new predictions.
+
+The best course of action is to look at a bunch of plots and take notes.
+If bill length and bill depth are correlated, but bill length is less correlated with the other feature, then maybe that's the one you should us in the model.
+If there is correlation between features, such as the flipper length being different for different species, include this in your model!
+Go through all of the features, their interactions with each other, and their interactions with the target, then write down a relationship that you think describes the target.
+Fit that model, and then start tinkering with other possible model formulations.
+:::
+
 
 ## Learning Linear Models
 
 0. Start a discovery journalism document\newline
-1. A basic introduction to R or Python.\newline
+1. A basic introduction to R or Python.
+    - NO COPY/PASTING\newline
 2. A tutorial on data cleaning and visualization
     - Python Data Science Handbook
     - R for Data Science\newline
 3. A (non-code) tutorial on linear models
     - Code everything in your language of choice!\newline
 4. Write a self-tutorial
+
+:::notes
+We're going to end our discussion of linear models there, even though there's plenty more to learn.
+This slide has some suggestions for continuing your journey.
+Especially for self-directed learning, I strongly encourage you to practice Discovery Journalism.
+Each time you learn something new, write up a description for yourself as if you're the first person to discover it.
+Work through a basic coding tutorial, but make sure that you never ever copy and paste code.
+It's easy to read a semi colon and move on, but was that actually a semi colon or was it just a regular ol' colon? 
+By typing it out and trying to run it, you have to pay attention to these things.
+
+Before getting into linear models, do a basic course on data cleaning and visualization. 
+This doesn't have to be a big one, it might only even take an hour or two.
+Of course, split this into 15-30 minute chunks where you start by reviewing your previous notes.
+
+Then you can work through a non-code tutorial for linear modelling.
+It doesn't have to be non-code *per se*, but this forces you to code it yourself and get a better perspective.
+
+Finally, summarise your knowledge.
+I'd suggest making it as a GitHub repository so that others can benefit from your notes and you'll have access it wherever you're working.
+:::
 
 # Machine Learning
 
@@ -337,9 +425,15 @@ This is hard
 This includes linear regression!
 
 :::notes
-There are tons opinions on what counts as machine learning
+There are tons opinions on what counts as machine learning.
 Most definitions have some variation on "getting information from data", but each definition will have different caveats or inclusions.
 
+To help you understand what machine leaning actually is, think back to linear models.
+When you tell your computer to calculate the slope, that counts as the "machine" "learning" what the slope is based on data.
+Artificial Intelligence is the process of a machine learning how to think like a human, but even in this case the learning part simply means calculating things from input data.
+
+For this workshop, I'll talk briefly about a few common techniques and then do a bit of a deeper dive into neural networks.
+Trust me, they're not that scary.
 :::
  
 
@@ -353,12 +447,31 @@ Most definitions have some variation on "getting information from data", but eac
 - **Neural Nets**
     - ...
 
+:::notes
+The first example of machine learning is called LASSO regression.
+In the linear regression section, we saw that variable selection is hard.
+Lasso does it for you!
+
+Another issue we had in linear regression was the problem of residuals still being correlated with one of the features.
+xgBoost does this for you!
+
+There are many other types of machine learning that aren't regression, and we'll cover those in the sections on Classification and Qualitative analysis.
+For now, let's dive into neural networks.
+:::
 
 ## Neural Nets 
 
-- What most people think of as ML.\newline
+- What most people think of as ML.
+    - Deep Learning: fancy neural nets.\newline
 - Loosely based on the way synapses work.\newline
 - Just a bunch of linear regressions
+
+:::notes
+When most people think of machine learning, they're thinking about neural nets.
+They see them as a computer having a brain, which is kinda true (but not really).
+They are inspired by a simplified version of how brains pass information, but a completely disconnected from the way brains learn and think.
+People also think of them as being hopelessly complex black boxes, but they're actually just a bunch of linear regressions taped together.
+:::
 
 ## Neural Net Setup
 
@@ -366,14 +479,52 @@ Most definitions have some variation on "getting information from data", but eac
 \includegraphics[width=\textwidth]{figs/NN.png}
 \end{center}
 
+:::notes
+So here's a computer brain.
+There are som inputs, in this case the flipper length and the bill length, and these feed into something called a hidden layer.
+Basically, these try and combine all of the features in a way that extracts more information about them.
+To predict the target, the information from the hidden layer is combined.
 
-## Are neural nets better than linear models
+So why do I call this a linear model? 
+Let's just look at the target.
+The information is "combined" to predict the target.
+How is it combined?
+With a linear model!
+Each of the "nodes" in the hidden layer is a function that takes in values from all previous nodes and spits out a new value, and these values act as the features.
+The numbers on the line are just the slopes of a linear model, and the blue "1" is the intercept term.
+If you learn more about neural networks, you'll learn that these are called loadings and the bias, but that's not important right now.
+
+So the difficult question now is: how do we determine the way this hidden layer works?
+Each time we try and make a prediction, we're wrong by a certain amount.
+The target node reports back to all the hidden nodes to tell them them how and why it was wrong, and the hidden nodes adjust their values appropriately.
+The hidden nodes generally start at a random number and then try and adjust that number to one that would have reduced the error in the prediction.
+This particular formulation is called a recurrent neural network because of the way the error is propagated backwards through the network.
+
+Choosing the number of nodes in a hidden layer is a challenge, and it's possible to have any number of hidden layers!
+Just like with linear models, we are stuck trying to decide on a model form.
+:::
+
+## Linear Models Versus Neural Nets
+
+- LM requires feature seletion
+- NN requires a choice of layers\newline
+- LM requires conitnuous data
+    - Logistic Regression works, though!
+- NN works with any data type
+    - Everything must be *scaled*\newline
+- LM gives interpretable sloeps
+- NN accounts for complex interactions\newline
+- LM is better for inference
+- NN is better for prediction
+
+
+## Is NN always better than LM?
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/NNLM.png}
 \end{center}
 
-
+No.
 
 
 # Classification
@@ -474,6 +625,31 @@ If we label any penguin with Flipper $<$ 198 as female:
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/11-SVM5.png}
 \end{center}
+
+## Other Classification Models
+
+- Logistic Regression
+    - Basically, LM for probabilities
+    - For multiclass, Multinomal Regression\newline
+- **Decision Trees** and **Random Forests**
+    - A very important model that I'm not covering
+    - Still a linear model at heart\newline
+- Naive Bayes Classifiers\newline
+- K-Nearest Neighbours (KNN)
+
+
+## Unsupervised Learning
+
+In classification, we're predicting labels *and checking if we're right.*
+
+\quad
+
+Unsupervised learning means *we don't know the labels*.
+
+## K-means Clustering
+
+
+
 
 # Dimension Reduction
 
