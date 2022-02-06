@@ -344,15 +344,15 @@ pca_peng <- prcomp(select(penguins, bill_length_mm, bill_depth_mm, flipper_lengt
 png(here::here("figs/12-PCA.png"), height = png_height, width = 1.5*png_width)
 gg_raw <- ggplot(penguins, aes(x = bill_depth_mm, y = flipper_length_mm, colour = paste(species, sex, sep = " & "))) + 
     geom_point() +
-    labs(colour = "Species & Sex",
-        title = "Without PCA (two features)",
+    theme(legend.position = "none") +
+    labs(title = "Without PCA (two features)",
         x = "Bill Depth (mm)",
         y = "Flipper Length (mm)")
 gg_pca <- ggbiplot(pca_peng, ellipse = TRUE, groups = paste(penguins$species, penguins$sex, sep = " & ")) +
-    theme(legend.position = "none") +
-    labs(title = "PCA (two combos of three features)", 
-        x = "First Principle Component",
-        y = "Second Principle component")
-gg_raw + gg_pca + guide_area() + 
-    plot_layout(guides = "collect", width = c(0.75, 1.5, 0.75))
+    labs(colour = "Species & Sex",
+        title = "PCA (two combinations of three features)", 
+        x = "First Principal Component",
+        y = "Second Principal Component")
+gg_raw + gg_pca + 
+    plot_layout(guides = "collect", width = c(0.75, 1.5))
 dev.off()

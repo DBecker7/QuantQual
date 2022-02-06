@@ -408,7 +408,7 @@ Why use many features when few features do trick?
 By combining features, we might:
 
 - Find out which features have similar effects on the target.\newline
-- Find hidden clusters
+- Find clusters
 
 ## Principal Components Analysis (PCA)
 
