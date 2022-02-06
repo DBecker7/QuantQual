@@ -5,16 +5,17 @@ subtitle: "What's out there and what you need to know."
 author:
     - "Devan Becker\\newline Public Health Agency of Canada; National Microbiology Laboratory\\newline\\newline February 7th, 2022\\newline For Western Postdoctoral Scholars"
 theme:
-    - Szeged
+    - Dresden
 colortheme:
-    - spruce
+    - Western2
 ---
 
 
 # Introduction
 
+## Front Matter
 
-## Land Acknowledgement
+### Land Acknowledgement
 
 <!---
 TODO: 
@@ -43,7 +44,7 @@ I also recognize the great diversity among indigenous peoples, both within and b
 For instance, the Dish With One Spoon Covenant Wampum is not an "Indigenous Thing", it's specific to the Haudenosaunee peoples.
 :::
 
-## About Me
+### About Me
 
 - Education
     - B.Sc. Math (Laurier)
@@ -64,7 +65,9 @@ I defended my PhD thesis exactly one week before the pandemic hit Canada, so I a
 Outside of academia, I listen to and play music (poorly), go camping, hiking, showshoeing, kayaking, and rock climbing, and I like to read a variety of things.
 :::
 
-## Outline
+## Foreshadowing
+
+### Outline
 
 - **Quantitative:** Dealing with numbers
     - Any number in a range
@@ -88,7 +91,7 @@ Finally, I'll do my best to get you started on learning your own analysis, and h
 There are lots of resources on campus and across the internet, but there are some caveats with all of those.
 :::
 
-## Before we begin
+### Before we begin
 
 - Interrupt at any time\newline
 - All notes/links/resources are on GitHub\newline
@@ -106,10 +109,7 @@ The GitHub version also has my (approximate) script inside
 I'll add the GitHub link to the chat now, but I'll also have Mihaela send it out after the meeting.
 :::
 
-
-# Analysis in General
-
-## Foreshadowing
+### What to watch for
 
 Keep an eye out for the following concepts:
 
@@ -132,8 +132,9 @@ The most important part of any modelling endeavour is being humble about the res
 
 # Regression
 
+## Linear Models
 
-## Terminology
+### Terminology
 
 :::notes
 So let's start with the fun one - regression!
@@ -172,7 +173,7 @@ Note to people reading the pdf: the data are from https://allisonhorst.github.io
 
 
 
-## Intro to linear models
+### Intro to linear models
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/1-intro.png}
@@ -191,7 +192,7 @@ Don't think too much about that - the intercept is just a mathematical requireme
 :::
 
 
-## A **Mean**ingful intercept
+### A **Mean**ingful intercept
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/2-center.png}
@@ -208,7 +209,7 @@ Now the intercept is the value of the target at the average value of the respons
 :::
 
 
-## Linear models: slopes
+### Linear models: slopes
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/3-slope.png}
@@ -220,7 +221,7 @@ The value of the slope represents the relationship between the features and the 
 Most of the time that we're doing a linear regression, this is what we want to quantify.
 :::
 
-## A **SD**ingful slope
+### A **SD**ingful slope
 
 *illustration:* scaling the x values
 
@@ -238,7 +239,7 @@ When we mean-center and divide by the standard deviation, we call that "scaling"
 For some machine learning techniques, this is absolutely necessary.
 :::
 
-## Binary Features
+### Binary Features
 
 \centering
 Suppose we have a variable that is labelled either 0 or 1. 
@@ -254,7 +255,7 @@ As a side note, ANOVA and ANCOVA are also secretly linear models.
 In fact, fitting ANOVA in R involves fitting a linear model.
 :::
 
-## The story so far
+### The story so far
 
 - The Intercept is a mathematical necessity\newline
 - The Slope answers our questions
@@ -271,7 +272,7 @@ That's why they call it a computer and not a thinker!
 Even if a linear model is appropriate, it doesn't mean your results will be good.
 :::
 
-## The most important part!
+### The most important part!
 
 
 \begin{center}
@@ -290,7 +291,7 @@ Later, we'll see some models that use words as their input.
 Even with these models, knowing about the errors is the most important part!
 :::
 
-## Residual plots: residuals versus predicted
+### Residual plots: residuals versus predicted
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/5-resid.png}
@@ -312,7 +313,7 @@ We do it this way for two reasons:
 2. There might be complicated interactions between features that are hard to see without considering many features.
 :::
 
-## The pattern
+### The pattern
 
 Each species has a slightly different relationship!!!
 
@@ -326,7 +327,7 @@ For this application, we'd need to account for these differences in species.
 At this point, it's worth working through a textbook or a course on linear models. 
 :::
 
-## Putting it all together
+### Putting it all together
 
 1. Get data
     - Data cleaning is the hardest part.\newline
@@ -348,13 +349,13 @@ The hard part is making sure that the model you fit is the model that you want.
 In this example, I have a long way to go!
 :::
 
-## Non-linear models?
+### Non-linear models?
 
 *illustration:* sine, polynomial, spline smoothing
 
 These are all just linear!
 
-## Feature Selection
+### Feature Selection
 
 - Including all of your features can be bad.
     - Correlated features
@@ -380,7 +381,7 @@ Fit that model, and then start tinkering with other possible model formulations.
 :::
 
 
-## Learning Linear Models
+### Learning Linear Models
 
 0. Start a discovery journalism document\newline
 1. A basic introduction to R or Python.
@@ -412,9 +413,9 @@ Finally, summarise your knowledge.
 I'd suggest making it as a GitHub repository so that others can benefit from your notes and you'll have access it wherever you're working.
 :::
 
-# Machine Learning
+## Machine Learning
 
-## What is Machine Learning?
+### What is Machine Learning?
 
 - Statistics, but done by a computer scientist...
 
@@ -439,7 +440,7 @@ Trust me, they're not that scary.
 :::
  
 
-## Regression in Machine Learning
+### Regression in Machine Learning
 
 - **Lasso Regression**
     - It's like linear regression, but it automatically removes features.
@@ -461,7 +462,7 @@ There are many other types of machine learning that aren't regression, and we'll
 For now, let's dive into neural networks.
 :::
 
-## Neural Nets 
+### Neural Nets 
 
 - What most people think of as ML.
     - Deep Learning: fancy neural nets.\newline
@@ -475,7 +476,7 @@ They are inspired by a simplified version of how brains pass information, but a 
 People also think of them as being hopelessly complex black boxes, but they're actually just a bunch of linear regressions taped together.
 :::
 
-## Neural Net Setup
+### Neural Net Setup
 
 \begin{center}
 \includegraphics[width=\textwidth]{figs/NN.png}
@@ -506,7 +507,7 @@ Choosing the number of nodes in a hidden layer is a challenge, and it's possible
 Just like with linear models, we are stuck trying to decide on a model form.
 :::
 
-## Linear Models Versus Neural Nets
+### Linear Models Versus Neural Nets
 
 - LM requires feature seletion
 - NN requires a choice of layers\newline
@@ -520,7 +521,7 @@ Just like with linear models, we are stuck trying to decide on a model form.
 - NN is better for prediction
 
 
-## Is NN always better than LM?
+### Is NN always better than LM?
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/NNLM.png}
@@ -531,7 +532,9 @@ No.
 
 # Classification
 
-## Binary Target
+## Supervised Classification
+
+### Binary Target
 
 
 | mass       | bill_len      | flipper_len      |species |island |**sex**|
@@ -551,7 +554,7 @@ It may seem strange to try and predict the biosex of the penguins since that's s
 :::
 
 
-## Ethics: biosex versus gender
+### Ethics: biosex versus gender
 
 - Chinstrap penguins have a higher-than-average occurence of homosexual behaviour.
     - Tufts University, Feb 2021: "What’s With All the Gay Penguins?"\newline
@@ -571,7 +574,7 @@ These are penguins, but that doesn't mean that the difference between biosex and
 Understanding the data collection is paramount to a good analysis, and poor interpretations can lead to ethical quandries.
 :::
 
-## Choosing between two options
+### Choosing between two options
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/7-SVM.png}
@@ -586,7 +589,7 @@ In this plot, I've separated the data into male and female and I added a vertica
 For this model, we're just going to guess any penguin with a longer flipper than 198 is likely female.
 :::
 
-## But how were we wrong?
+### But how were we wrong?
 
 If we label any penguin with Flipper $<$ 198 as female:
 
@@ -603,7 +606,7 @@ If we label any penguin with Flipper $<$ 198 as female:
 See also: sensitivity, specificity, precision, recall, F1 score.
 
 
-## More dimensions!
+### More dimensions!
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/8-SVM2.png}
@@ -612,25 +615,25 @@ See also: sensitivity, specificity, precision, recall, F1 score.
 - With more information we can fit a better model!
 - ...
 
-## ... but there's a reason I only used Gentoo
+### ... but there's a reason I only used Gentoo
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/9-SVM3.png}
 \end{center}
 
-## Three categories: Species
+### Three categories: Species
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/10-SVM4.png}
 \end{center}
 
-## It doesn't need to be linear!
+### It doesn't need to be linear!
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/11-SVM5.png}
 \end{center}
 
-## Other Classification Models
+### Other Classification Models
 
 - Logistic Regression
     - Basically, LM for probabilities
@@ -644,13 +647,15 @@ See also: sensitivity, specificity, precision, recall, F1 score.
 
 ## Unsupervised Learning
 
+### Definition
+
 In classification, we're predicting labels *and checking if we're right.*
 
 \quad
 
 Unsupervised learning means *we don't know the labels*.
 
-## K-means Clustering
+### K-means Clustering
 
 *Illustration:* Unlabelled plot
 
@@ -661,7 +666,9 @@ Unsupervised learning means *we don't know the labels*.
 
 # Dimension Reduction
 
-## Motivation
+## A quick overview
+
+### Motivation
 
 Why use many features when few features do trick?
 
@@ -672,7 +679,7 @@ By combining features, we might:
 - Find out which features have similar effects on the target.\newline
 - Find hidden clusters
 
-## Principal Components Analysis (PCA)
+### Principal Components Analysis (PCA)
 
 A *Principle Component* is a combination of the features (NOT target).
 
@@ -684,19 +691,19 @@ PC2 &= -0.65*bill\_length - 0.75*bill\_depth - 0.03*flipper\_length\\
 ...&
 \end{align*}
 
-## Principle Components - clustering
+### Principle Components - clustering
 
 \begin{center}
 \includegraphics[width=\textwidth]{figs/12-PCA.png}
 \end{center}
 
-# Qualitative
+# Qualitative Analysis
 
-## Qualitative Data
+## Definitions?
+
+### Qualitative Data
 
 Quality: the properties/characteristics of a thing (not numbers)
-
-\quad
 
 - Survey responses 
     - "A lot of people seem to talk about painful things ..."\newline
@@ -707,7 +714,7 @@ Quality: the properties/characteristics of a thing (not numbers)
 - Concepts
     - "These documents could be categorized by their use of ..."
 
-## Qualitative Data **Analysis**
+### Qualitative Data **Analysis**
 
 - Fully manual: read everything, pay attention, take notes, compare.
     - I can't help you with this.\newline
@@ -716,7 +723,9 @@ Quality: the properties/characteristics of a thing (not numbers)
 - Much computer: **Natural Language Processing**
     - It's machine learning, but for words!
 
-## Code is perfect and English is awful
+## Natural Language Processing
+
+### Code is perfect and English is awful
 
 - It's cold outside, yes?
 - It's cold outside, no?
@@ -727,7 +736,7 @@ Sometimes, yes and no mean the same thing.
 
 How the heck does a computer have a chance?!?
 
-## TF-IDF: Who wrote the Op-Ed?
+### TF-IDF: Who wrote the Op-Ed?
 <!---
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/tfidf.png}
@@ -736,7 +745,7 @@ How the heck does a computer have a chance?!?
 \small
 Source: \url{http://varianceexplained.org/r/op-ed-text-analysis/}
 
-## Sentiment Analysis: Trump Uses an Android
+### Sentiment Analysis: Trump Uses an Android
 <!---
 \begin{center}
 \includegraphics[width=0.75\textwidth]{figs/sentiment.png}
@@ -745,7 +754,7 @@ Source: \url{http://varianceexplained.org/r/op-ed-text-analysis/}
 \small
 Source: \url{http://varianceexplained.org/r/trump-tweets/}
 
-## More Advanced Natural Language Processing
+### More Advanced Natural Language Processing
 
 - Parts of Speech
     - Nouns, verbs, etc.\newline
@@ -759,9 +768,11 @@ Source: \url{http://varianceexplained.org/r/trump-tweets/}
 All of the above can be based on Nueral Nets!
 
 
-# Wrap-Up
+# Meditative
 
-## Summary
+
+
+### Summary
 
 1. GIGO
 2. Plot everything
@@ -769,7 +780,7 @@ All of the above can be based on Nueral Nets!
 4. Plot everything
 
 
-## Important hings we didn't cover
+### Important hings we didn't cover
 
 - Inference versus Prediction
 - Version control (GitHub!)
