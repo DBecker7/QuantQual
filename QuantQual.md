@@ -322,7 +322,7 @@ The hard part is making sure that the model you fit is the model that you want.
 In this example, I have a long way to go!
 :::
 
-## Other
+### Other
 
 - Mixed Models
 
@@ -836,8 +836,6 @@ All of the above can be based on Nueral Nets!
 
 # Meditative
 
-
-
 ### Summary
 
 Same ideas throughout:
@@ -917,7 +915,7 @@ The *posterior* distribution comes from updating the *prior* with the data (like
 - The posterior is a *distribution*, not a point estimate\newline
 - A 95\% *credible interval* contains the true mean 95\% of the time!\newline
 - Much, much, much more flexible models
-    - Especially mixed models
+    - Especially mixed moe
 
 
 
