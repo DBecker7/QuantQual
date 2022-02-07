@@ -391,3 +391,43 @@ ggplot(peng3) +
     labs(x = "True Value", y = "Predicted Value",
         colour = NULL)
 dev.off()
+
+
+kmean_peng <- kmeans(penguins[, c("bill_length_mm", "flipper_length_mm")],
+    centers = 3, nstart = 25)
+ggplot() +
+        geom_point(
+            mapping = aes(x = penguins$flipper_length_mm, y = penguins$bill_length_mm,
+            colour = factor(kmean_peng$cluster))
+        ) + 
+        geom_point(
+            mapping = aes(x = kmean_peng$centers[, 2], y = kmean_peng$centers[, 1],
+                colour = factor(1:3)),
+            size = 8, shape = 23, fill = "lightgrey", alpha = 0.5) +
+        labs(x = "Flipper Length (mm)", y = "Bill Length (mm)",
+            colour = "Class")
+# 1 cluseter, 2 clusters, 3 clusters, etc.
+kmeans_list <- list()
+for(i in 1:6) {
+    kmean_peng <- kmeans(penguins[, c("bill_length_mm", "flipper_length_mm")],
+        centers = i, nstart = 25)
+    if(i == 1){
+        kdf <- data.frame(bill = penguins$bill_length_mm,
+            flipper = penguins$flipper_length_mm,
+            class = kmean_peng$cluster,
+            nclust = i)
+    } else {
+        kdf <- bind_rows(kdf, data.frame(bill = penguins$bill_length_mm,
+            flipper = penguins$flipper_length_mm,
+            class = kmean_peng$cluster,
+            nclust = i))
+    }
+}
+png(here::here("figs/kmeans.png"), height = png_height, width = 1.5*png_width)
+ggplot(kdf, aes(x = flipper, y = bill, colour = factor(class))) +
+    geom_point() +
+    facet_wrap(~ nclust) +
+        labs(x = "Flipper Length (mm)", y = "Bill Length (mm)",
+            colour = "Class") +
+    theme(legend.position = "none")
+dev.off()
