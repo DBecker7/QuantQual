@@ -194,7 +194,7 @@ Don't think too much about that - the intercept is just a mathematical requireme
 \includegraphics[width=0.8\textwidth]{figs/2-center.png}
 \end{center}
 
-- Subtract the average flipper length from each individual flipper length.
+- Subtract average flipper length from each flipper length.
     - The intercept is the body mass at the average flipper length!
     - This also helps with the underlying math.
 
@@ -610,10 +610,10 @@ If we label any penguin with Flipper $<$ 198 as female:
 |Male   |    74|   94|
 |Female |    97|   68|
 
-- Many different metrics to calculate!
-    - When we label them female, they're actually female 97/(74+97)=56\% of the time.
-    - When they're actually female, we label them female 97/(68+97)=58\% of the time.
-- This is a **Confusion Matrix**.
+- When we label them female, they're actually female 97/(74+97)=56\% of the time.
+- When they're actually female, we label them female 97/(68+97)=58\% of the time.
+
+This is a **Confusion Matrix**.
 
 See also: sensitivity, specificity, precision, recall, F1 score.
 
@@ -651,7 +651,7 @@ See also: sensitivity, specificity, precision, recall, F1 score.
     - Basically, LM for probabilities
     - For multiclass, Multinomal Regression\newline
 - **Decision Trees** and **Random Forests**
-    - A very important model that I'm not covering
+    - Very important models that I'm not covering
     - Still a linear model at heart\newline
 - Naive Bayes Classifiers\newline
 - K-Nearest Neighbours (KNN)
@@ -820,7 +820,9 @@ All of the above can be based on Nueral Nets!
 FWIW, I used R for this workshop and code is available.
 
 
+### Thank You!
 
+See you on the slack chat!
 
 
 

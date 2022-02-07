@@ -6,7 +6,6 @@ library(patchwork)      # Put pretty plots together
 #devtools::install_github("nicolash2/ggbrace")
 library(ggbrace)        # Annotate a brace
 library(dplyr)          # Data cleaning
-library(here)           # Finding files
 library(palmerpenguins) # Data
 penguins <- filter(palmerpenguins::penguins,
     !is.na(sex), !is.na(species), 
@@ -17,7 +16,7 @@ library(e1071)          # svm function
 #library(devtools); install_github("vqv/ggbiplot")
 library(ggbiplot)       # For pca plots
 library(neuralnet)
-
+library(here)           # Finding files
 
 # Quantitative - Regression 
 penguins %>% 
