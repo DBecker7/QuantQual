@@ -41,6 +41,8 @@ The Dish with One Spoon is a metaphor for the responsibilities that we have when
 It's easy for people like me to think of history books when talking about indigenous peoples, but I recognize that they are contemporary stewards of the land and vital contributors of our society. 
 I also recognize the great diversity among indigenous peoples, both within and between nations. 
 For instance, the Dish With One Spoon Covenant Wampum is not an "Indigenous Thing", it's specific to the Haudenosaunee peoples.
+As a statistician, I am tied into a particular way of knowing.
+These land acknowledgements remind me that I should seek out other ways of knowing, especially via consultation with native peoples when doing spatial statistics or public health measures.
 :::
 
 ### About Me
@@ -319,6 +321,10 @@ This is because that step is quite easy once you're comfortable with the softwar
 The hard part is making sure that the model you fit is the model that you want.
 In this example, I have a long way to go!
 :::
+
+## Other
+
+- Mixed Models
 
 
 ## Machine Learning
@@ -878,7 +884,40 @@ FWIW, I used R for this workshop and code is available.
 See you on the slack chat!
 
 
+### Bonus Topic: Bayesian Statistics
 
+I flip a coin and get heads.
+
+What's the probability of heads?
+
+\quad
+
+- Frequentist (the usual way): 100\%
+- Bayesian: I though it was 50\%, now I think it's closer to 60\% maybe?
+
+### Probabilities
+
+- Usual way: long term frequency (e.g., after 100 coin flips, 50 are expected to be heads)\newline
+- Bayesian: Uncertainty (e.g., I think the next flip is heads with 50\% certainty)
+
+### In linear models
+
+- I think the slope is probably 10, on average.
+    - There's variance in my belief\newline
+- With a small data set, I move my belief closer to what the data says
+    - Larger data means estimate is closer to data AND smaller variance.
+
+\quad
+
+The *posterior* distribution comes from updating the *prior* with the data (likelihood).
+
+
+### Why Bayesian?
+
+- The posterior is a *distribution*, not a point estimate\newline
+- A 95\% *credible interval* contains the true mean 95\% of the time!\newline
+- Much, much, much more flexible models
+    - Especially mixed models
 
 
 
