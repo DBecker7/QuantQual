@@ -8,6 +8,7 @@ theme:
     - Dresden
 colortheme:
     - Western2
+graphics: yes
 ---
 
 
@@ -212,7 +213,6 @@ Most of the time that we're doing a linear regression, this is what we want to q
 
 ### Binary Features
 
-\centering
 Suppose we have a variable that is labelled either 0 or 1. 
 
 What does the slope represent?
