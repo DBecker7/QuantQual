@@ -162,7 +162,7 @@ gg_pat2 <- ggplot(lm_flip, aes(x = .fitted, y = .resid,
     geom_smooth(method = "lm", formula = "y~x", se = FALSE) +
     labs(y = "Residuals (errors)", x = "Fitted Values",
         title = "Residual Plot", colour = "Species")
-gg_pat1 + gg_pat2 + plot_layout(guides = "collect")
+gg_pat2
 dev.off()
 
 

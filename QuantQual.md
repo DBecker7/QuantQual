@@ -111,9 +111,9 @@ I'll add the GitHub link to the chat now, but I'll also have Mihaela send it out
 
 Keep an eye out for the following concepts:
 
-1. Garbage In, Garbage Out (GIGO)
-2. Numerical summaries lie - you need plots!
-3. Models are models.
+1. Garbage In, Garbage Out (GIGO)\newline
+2. Numerical summaries lie - you need plots!\newline
+3. Models are models.\newline
 4. Models are wrong.
 
 :::notes
@@ -130,7 +130,7 @@ The most important part of any modelling endeavour is being humble about the res
 
 # Regression
 
-### Linear Models
+### Terminology
 
 :::notes
 So let's start with the fun one - regression!
@@ -147,6 +147,8 @@ You may know them as explanatory or independent variables, or maybe as IVs.
     - A.k.a. dependent variable or response.
 - The Features could be any data type
     - A.k.a. explantory or independent variables (IVs)
+
+### The Data
 
 :::notes
 For this example, we're going to use the Palmer Penguins dataset, which was collected at Palmer station in antarctica. 
@@ -168,6 +170,14 @@ Note to people reading the pdf: the data are from https://allisonhorst.github.io
 |        3400|           50.1|               190|Chinstrap |Dream     |female |
 
 
+### Goal
+
+How does body mass change with flipper length?
+
+\quad
+
+- The **slope** quantifies this change\newline
+- If the data are good, estimated slope is similar to *population* slope
 
 ### Intro to linear models
 
@@ -188,23 +198,6 @@ Don't think too much about that - the intercept is just a mathematical requireme
 :::
 
 
-### A **Mean**ingful intercept
-
-\begin{center}
-\includegraphics[width=0.8\textwidth]{figs/2-center.png}
-\end{center}
-
-- Subtract average flipper length from each flipper length.
-    - The intercept is the body mass at the average flipper length!
-    - This also helps with the underlying math.
-
-:::notes
-The intercept can, however, be made to be meaningful. 
-If you subtract the mean value from each of the values of the feature, then "0" is the new mean value!
-Now the intercept is the value of the target at the average value of the response.
-:::
-
-
 ### Linear models: slopes
 
 \begin{center}
@@ -215,24 +208,6 @@ Now the intercept is the value of the target at the average value of the respons
 While the intercept can be modified so that it is meaningful, the slope is almost always meaningful for any analysis.
 The value of the slope represents the relationship between the features and the response. 
 Most of the time that we're doing a linear regression, this is what we want to quantify.
-:::
-
-### A **SD**ingful slope
-
-*illustration:* scaling the x values
-
-- Subtract mean flipper length from each individual flipper length
-- Divide by the standard deviation. 
-
-This is called **scaling** the feature.
-
-:::notes
-Similar to a **meaning**ingful intercerpt, we have an **SD**ingful slope.
-Recall that the slope represents the increase in the target for a one unit increase in the feature.
-When we divide the feature by the standard deviation before the modelling step, we make it so one unit represents one standard deviation.
-Becaues of this, the slopes of different features can easily be compared!
-When we mean-center and divide by the standard deviation, we call that "scaling".
-For some machine learning techniques, this is absolutely necessary.
 :::
 
 ### Binary Features
@@ -327,7 +302,7 @@ At this point, it's worth working through a textbook or a course on linear model
 
 1. Get data
     - Data cleaning is the hardest part.\newline
-2. Plot data
+2. Check data
     - If you haven't plotted it, you're doing it wrong.\newline
 3. Fit model\newline
 4. Check model
@@ -345,69 +320,6 @@ The hard part is making sure that the model you fit is the model that you want.
 In this example, I have a long way to go!
 :::
 
-### Non-linear models?
-
-*illustration:* sine, polynomial, spline smoothing
-
-These are all just linear!
-
-### Feature Selection
-
-- Including all of your features can be bad.
-    - Correlated features
-    - Model complexity
-    - Variance inflation\newline
-- Instead, only choose the important ones.
-
-Advice: plot everything, model what you think is correlated, check your results.
-
-:::notes
-When I talk about making sure your model has the best errors, I'm speaking in reference to models with different features.
-For instance, in this example I had both bill length and bill depth.
-These two features are measuring very similar things, and including both in a model may actually make you less able to describe the releationship with body mass.
-It also makes the model more complex, and a simpler model is better for interpretation.
-When two features are highly correlated, the model can't tell which one is better to use.
-This raises the variance of the slope terms, which makes it hard to make new predictions.
-
-The best course of action is to look at a bunch of plots and take notes.
-If bill length and bill depth are correlated, but bill length is less correlated with the other feature, then maybe that's the one you should us in the model.
-If there is correlation between features, such as the flipper length being different for different species, include this in your model!
-Go through all of the features, their interactions with each other, and their interactions with the target, then write down a relationship that you think describes the target.
-Fit that model, and then start tinkering with other possible model formulations.
-:::
-
-
-### Learning Linear Models
-
-0. Start a discovery journalism document\newline
-1. A basic introduction to R or Python.
-    - NO COPY/PASTING\newline
-2. A tutorial on data cleaning and visualization
-    - Python Data Science Handbook
-    - R for Data Science\newline
-3. A (non-code) tutorial on linear models
-    - Code everything in your language of choice!\newline
-4. Write a self-tutorial
-
-:::notes
-We're going to end our discussion of linear models there, even though there's plenty more to learn.
-This slide has some suggestions for continuing your journey.
-Especially for self-directed learning, I strongly encourage you to practice Discovery Journalism.
-Each time you learn something new, write up a description for yourself as if you're the first person to discover it.
-Work through a basic coding tutorial, but make sure that you never ever copy and paste code.
-It's easy to read a semi colon and move on, but was that actually a semi colon or was it just a regular ol' colon? 
-By typing it out and trying to run it, you have to pay attention to these things.
-
-Before getting into linear models, do a basic course on data cleaning and visualization. 
-This doesn't have to be a big one, it might only even take an hour or two.
-Of course, split this into 15-30 minute chunks where you start by reviewing your previous notes.
-
-Then you can work through a non-code tutorial for linear modelling.
-It doesn't have to be non-code *per se*, but this forces you to code it yourself and get a better perspective.
-
-Finally, summarise your knowledge.
-I'd suggest making it as a GitHub repository so that others can benefit from your notes and you'll have access it wherever you're working.
-:::
 
 ## Machine Learning
 
@@ -417,7 +329,7 @@ I'd suggest making it as a GitHub repository so that others can benefit from you
 
 \quad\quad\quad\quad\quad\quad\quad\quad\quad\quad --OR--
 
-- Anything that tries to get information from data!
+- Anything algorithm that tries to get information from data!
 
 \quad
 
@@ -510,16 +422,10 @@ Just like with linear models, we are stuck trying to decide on a model form.
 
 ### Linear Models Versus Neural Nets
 
-- LM requires feature seletion
-- NN requires a choice of layers\newline
-- LM requires conitnuous data
-    - Logistic Regression works, though!
-- NN works with any data type
-    - Everything must be *scaled*\newline
-- LM gives interpretable sloeps
+- LM gives interpretable slopes
 - NN accounts for complex interactions\newline
-- LM is better for inference
-- NN is better for prediction
+- LM is better for **inference**
+- NN is better for **prediction**
 
 
 ### Is NN always better than LM?
@@ -578,7 +484,7 @@ It may seem strange to try and predict the biosex of the penguins since that's s
 
 \quad
 
-Always be aware that "biosex" is an imperfect measurement of gender roles.
+"Biosex" is a fundamentally imperfect measurement of gender roles.
 
 :::notes
 In any analysis, you'll likely run into ethical challenges.
