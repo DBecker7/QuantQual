@@ -92,7 +92,7 @@ There are lots of resources on campus and across the internet, but there are som
 ### Before we begin
 
 - Interrupt at any time\newline
-- All notes/links/resources are on GitHub\newline
+- All notes/links/resources/R code are on GitHub\newline
 - Ask future questions in the PAW Slack chat\newline
 - I have allowed myself **ONE** equation. 
 
@@ -427,6 +427,12 @@ Just like with linear models, we are stuck trying to decide on a model form.
 - LM is better for **inference**
 - NN is better for **prediction**
 
+:::notes
+In general, neural nets tend to give better predictions.
+However, the interpretation of the parameters of linear models is often much better.
+For instance, being able to say how much the body mass increases as flipper length increases tells us something about the biological relationships.
+Neural nets will give similar, if not better, predictions, but we won't know why.
+:::
 
 ### Is NN always better than LM?
 
@@ -436,11 +442,19 @@ Just like with linear models, we are stuck trying to decide on a model form.
 
 No.
 
+:::notes
+The linear model fit the data quite well, depsite not incorporating the species in the model.
+The neural nets perhaps gave slightly better predictions.
+I have no idea why, though, and the neural net has no interest in explaining it to me.
+
+The moral here is this: don't be impressed by machine learning; it's a tool to make fantastic yet unexplainable predictions.
+The moment you see a machine learning model you should immediately ask yourself whether good predictions are worth the lack of interpretability.
+:::
 
 ### ML and Ethics
 
 - ML finds patterns that exist
-    - It perpetuates existing patterns\newline
+    - It perpetuates existing patterns, e.g. black recidivism\newline
 - ML is hard to audit
     - Is it just looking at peoples' race? Hard to say!
     - Explainable AI (XAI)\newline
@@ -449,6 +463,16 @@ No.
     - Ca't plead your case.
 
 \url{https://delphi.allenai.org/?a1=Using+AI+to+determine+ethics}
+
+:::notes
+As a corollary to the lack of interpretation, the model might actually be using data that you don't want it to use.
+For example, models that try and predict whether a convicted criminal will re-offend (called recidivism.
+To audit this model, researchers had to look at all of the black cases and all of the white cases, along with the sociological differences between these races.
+It wasn't enough to just check whether the model gave different predictions for white and black people.
+Instead, the researchers had to carefully scrutinize cases where the only differences were race **and** features that should not affect recidivism. 
+They found that much of the model's computation was spent predicting whether the person was black, then basing its decision on the fact that, historically, black people are arrested and therefore convicted more for equal offences.
+The most important thing to know about a model is how it's wrong, especially when it's wrong in a way that perpetuates systematic racism.
+:::
 
 # Classification
 
@@ -521,8 +545,20 @@ If we label any penguin with Flipper $<$ 198 as female:
 
 This is a **Confusion Matrix**.
 
-See also: sensitivity, specificity, precision, recall, F1 score.
+See also: sensitivity, specificity, precision, recall, F1 score, ROC/AUC curves.
 
+:::notes
+This is a whole rabbit hole, so I'm going to try and not spend too much time on it.
+Again, the most important thing to know about a model is how it's wrong.
+For classification problems, it's less clear what it means to be wrong.
+On the one hand, we can simply check how many of the predictions were correct.
+We can do this just for female and just for male penguins, and in this case our model was correct 56\% of the time for female penguins.
+On the other hand, we can look at how much of the data the model was correctly able to classify, in which case we correctly labelled 58\% of the females in the data.
+
+Note the slight change in this: we can look at how many of the predicted females were actual females, and we can look at how many of the actual females were predicted to be female.
+Which of these definitions is important to you depends on the context, and many volumes have been written on the matter.
+For our purposes, I'm just going to leave you with some homework: Read up on the sensitivity, specificity, precision, recall, F1 score, ROC/AUC curves.
+:::
 
 ### More dimensions!
 
@@ -533,11 +569,26 @@ See also: sensitivity, specificity, precision, recall, F1 score.
 - With more information we can fit a better model!
 - ...
 
+:::notes
+The single vertical line is obviously too simple.
+Instead, we could look at two dimensions!
+Here, it's obvious that our method - Support Vector Machines - is trying to find a line that separate our data.
+As you might have guessed, this is basically just linear regression.
+I know it's not flashy, but I highly recommend doing a deep dive into linear regression before trying to learn the fancier models.
+:::
+
 ### ... but there's a reason I only used Gentoo
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/9-SVM3.png}
 \end{center}
+
+:::notes
+Here's when I show that my simple teaching data sets are sanitized versions of reality.
+For Gentoo penguins, it's pretty straightforward to draw a line through the data and separate the males from the females.
+There are three different species in this data set, and the other two species are much harder to separate.
+However...
+:::
 
 ### Three categories: Species
 
@@ -545,23 +596,52 @@ See also: sensitivity, specificity, precision, recall, F1 score.
 \includegraphics[width=0.8\textwidth]{figs/10-SVM4.png}
 \end{center}
 
+:::notes
+We can try to guess the species!
+With three categories, we can draw a couple lines to separate the data.
+As you can see, Chinstrap and Adelie are hard to tease apart in this way.
+However...
+:::
+
+
 ### It doesn't need to be linear!
 
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/11-SVM5.png}
 \end{center}
 
+:::notes
+We don't have to use straight lines!
+Obviously something funky happened here, and I need to do more work to tune my model.
+:::
+
 ### Other Classification Models
 
-- Logistic Regression
+- **Logistic Regression**
     - Basically, LM for probabilities
+        - Interpretable results!
     - For multiclass, Multinomal Regression\newline
 - **Decision Trees** and **Random Forests**
     - Very important models that I'm not covering
     - Still a linear model at heart\newline
 - Naive Bayes Classifiers\newline
-- K-Nearest Neighbours (KNN)
+- K-Nearest Neighbours (KNN)\newline
+- Neural Nets!
 
+
+:::notes
+I chose to show you Support Vector Machines (SVM) because the concept is pretty easy to understand (even though the name is pure jargon).
+However, Logistic Regression is probably the most important for you to learn.
+It is extremely close to linear regression, except it models the probability that a given observation belongs to a certain class.
+As with linear regression, it gives you interpretable parameters (except it gives the odds ratio instead of a slope).
+After learning Logistic, move on to Decision Trees.
+These models work somewhat similar to support vector machines, but in a much more systematic way.
+Random Forests are clever collections of Decision Trees, so spend some time with Decision Trees first.
+Naive Bayes gets very mathy very quickly, but it is often one of the best classifiers (and hardest to implement).
+KNN is rarely the best classifier for general tasks, but it shines for some very particular problems.
+Support Vector Machines are great tools for exploring and visualizing your data, but they're rarely useful in practice.
+SVM suffers from a lack of interpretability in higher dimensions, and in this case you might as well just use a Neural Net!
+:::
 
 ## Unsupervised Learning
 
@@ -573,14 +653,31 @@ In classification, we're predicting labels *and checking if we're right.*
 
 Unsupervised learning means *we don't know the labels*.
 
+:::notes
+In all the examples we've learned so far, we've known what we're trying to predict.
+We know that some penguins are male and some are female, and we tried to find out what other differences that entails.
+
+In unsupervised learning, we don't know what we're trying to predict!
+Instead, we plot our data and see some clusters, and we try and separate the data based on those clusters.
+Let's do an example.
+:::
+
 ### K-means Clustering
 
-*Illustration:* Unlabelled plot
+\begin{center}
+\includegraphics[width=\textwidth]{figs/kmeans.png}
+\end{center}
 
 - Pretend that Species info is *NOT* available.
 - How many clusters are there?
 
-
+:::notes
+Kmeans clustering is an unsupervised technique that tries to find groups.
+If Species information wasn't available, how many groups would you say that there are?
+Unfortunately, K-means requires us to tell it how many groups we're looking for, so we have to just fit 1 mean, check the plot, fit 2 means, check the plot, fit 3 means, check the plot.
+This is where the name comes from - it assumes that there are K locations that are the center of the clusters, and tries to choose these locations to minimize the average distance to all of the points in that cluster.
+With most unsupervised techniques, there's a lot of tweaking to choose the number of groups, and then a lot of investigation afterwards to see what exists in the groups in your data.
+:::
 
 # Dimension Reduction
 
@@ -595,23 +692,52 @@ By combining features, we might:
 - Find out which features have similar effects on the target.\newline
 - Find clusters
 
+:::notes
+Another important machine learning technique is dimension reduction. 
+This can be used when you've measured a lot of different features and some of them may be correlated, or it can be used to get different views of your data (lieterally).
+It's also a good way to find clusters in the data, but please note that this requires an extra step.
+There are many such techniques, but by far the most popular is Principal Components Analysis.
+:::
+
 ### Principal Components Analysis (PCA)
 
 A *Principle Component* is a combination of the features (NOT target).
 
 Each component is unrelated to the others.
 
-\begin{align*}
+\begin{align}
 PC1 &= 0.55*bill\_length - 0.51*bill\_depth + 0.65*flipper\_length\\
 PC2 &= -0.65*bill\_length - 0.75*bill\_depth - 0.03*flipper\_length\\
 ...&
-\end{align*}
+\end{align}
+
+:::notes
+Here it is! 
+It's the equation I told you I had!
+A principal component is a combination of all of the features.
+Unlike LASSO regression, which tries to remove some features, PCA rotates them so that they're as separated as possible.
+:::
+
+
 
 ### Principle Components - clustering
 
 \begin{center}
 \includegraphics[width=\textwidth]{figs/12-PCA.png}
 \end{center}
+
+:::notes
+The Components become our new features, so this plot is just like plotting flipper length against bill depth.
+I've manually labelled the sex and species from the data - this is not clustering!
+However, it demonstrates how rotating the features so that each component is as different as possible can be used for clustering.
+The labelled lines represent how much of each feature applies to each component.
+Flipper length is a big part of the first 
+
+When I said PCA rotates the features, I meant literrally.
+In the repo, there's a script that plots the penguins data in 3d. 
+If you have R installed on your machine, check https://dmurdoch.github.io/rgl/ to install the packages.
+Once you do that, try to rotate the plot until it looks like this PCA plot!
+:::
 
 # Qualitative Analysis
 
@@ -628,14 +754,32 @@ Quality: the properties/characteristics of a thing (not numbers)
 - Concepts
     - "These documents could be categorized by their use of ..."
 
+:::notes
+Usually, qualitative research involves your own personal intelligence.
+You read through survey responses to get a "sense" of what people are saying, then come up with your own categories.
+Similarly, you might be doing a literature review and need to organize papers into an introduction section.
+Alternatively, you might have, say, responses from democrats and republicans and want to know what else is different between the two.
+:::
+
 ### Qualitative Data **Analysis**
 
 - Fully manual: read everything, pay attention, take notes, compare.
     - I can't help you with this.\newline
 - Some computer: search within documents, word clouds, etc.
-    - Audio/image/video transcription via neural networks\newline
+    - Audio/image/video transcription via neural networks
+    - Semantic analysis\newline
 - Much computer: **Natural Language Processing**
     - It's machine learning, but for words!
+
+:::notes
+I am not a trained qualitative researcher.
+However, I know how to do machine learning!
+In the partially automated scenario, machine learning can transcribe audio interviews into text to make it easier to search.
+Image recognition is a hot topic in machine learning research right now, and this might help a sociologist looking through historical images.
+Some advanced work is being done to transcribe videos - that is, the computer watches a video and describes what objects it sees and how they're interacting.
+Semantic analysis conists of assigning values to the words, such as assigning happier words a higher value, then using this to analyse a document for how happy it is.
+However, the real fun begins when we get computers to interpret the documents for us!
+:::
 
 ## Natural Language Processing
 
@@ -648,23 +792,23 @@ Sometimes, yes and no mean the same thing.
 
 \quad
 
-How the heck does a computer have a chance?!?
+How the heck could a computer have a chance?!?
 
 ### TF-IDF: Who wrote the Op-Ed?
-<!---
+
 \begin{center}
 \includegraphics[width=0.8\textwidth]{figs/tfidf.png}
 \end{center}
---->
+
 \small
 Source: \url{http://varianceexplained.org/r/op-ed-text-analysis/}
 
 ### Sentiment Analysis: Trump Uses an Android
-<!---
+
 \begin{center}
 \includegraphics[width=0.75\textwidth]{figs/sentiment.png}
 \end{center}
---->
+
 \small
 Source: \url{http://varianceexplained.org/r/trump-tweets/}
 
@@ -673,7 +817,7 @@ Source: \url{http://varianceexplained.org/r/trump-tweets/}
 - Parts of Speech
     - Nouns, verbs, etc.\newline
 - Topic modelling
-    - Words show up in similar sentences\newline
+    - Words that show up in similar sentences prob. have similar topics\newline
 - Bag of Words (Word2Vec)
     - How often are words used together?\newline
 
@@ -689,6 +833,8 @@ All of the above can be based on Nueral Nets!
 
 
 ### Summary
+
+Same ideas throughout:
 
 1. GIGO
 2. Plot everything
@@ -709,6 +855,7 @@ All of the above can be based on Nueral Nets!
 
 - **Data Cleaning** (don't use Excel)\newline
 - Inference versus Prediction\newline
+- **Cross Validation**\newline
 - Version control and best practices (GitHub!)\newline
 - Scrutinizing data\newline
 
