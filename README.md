@@ -37,7 +37,7 @@ Notes from a workshop on quantitative and qualitative analysis (but mostly quant
         - [Introduction to Statistical Learning, python codes](https://github.com/JWarmenhoven/ISLR-python)
             - [See also](https://github.com/emredjan/ISL-python)
 - Workshops and Conferences
-    - Toronto Data Workshop and Toronto Conference on Reproducibility
+    - Coming Soon: [Toronto Data Workshop and Toronto Conference on Reproducibility](https://canssiontario.utoronto.ca/toronto_workshop_on_reproducibility_2022/?mc_cid=abb5ef4487&mc_eid=d298959bb3)
         - Also check out their YouTube channel
 
 
