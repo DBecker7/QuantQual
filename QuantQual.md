@@ -800,6 +800,12 @@ Sometimes, yes and no mean the same thing.
 
 How the heck could a computer have a chance?!?
 
+:::notes
+In this section, I'm going to highlight two NLP applications.
+Sorry that they are both Trump-related, but he dominated the international conversation and inspired a lot of interesting analyses.
+In my opinion, both of these applications are neutral in their political tone. 
+:::
+
 ### TF-IDF: Who wrote the Op-Ed?
 
 \begin{center}
@@ -809,6 +815,13 @@ How the heck could a computer have a chance?!?
 \small
 Source: \url{http://varianceexplained.org/r/op-ed-text-analysis/}
 
+:::notes
+In this application, an op-ed was written by a anonymous source.
+That just won't do - we need to know!
+The analysis takes us through some interesting data collection and language processing techniques.
+I love this example because it teaches a lot about how this sort of analysis works, but then the conclusion comes from expert knowledge that NLP wasn't prepared to handle.
+:::
+
 ### Sentiment Analysis: Trump Uses an Android
 
 \begin{center}
@@ -817,6 +830,11 @@ Source: \url{http://varianceexplained.org/r/op-ed-text-analysis/}
 
 \small
 Source: \url{http://varianceexplained.org/r/trump-tweets/}
+
+:::notes
+This second application shows even more techniques.
+I would classify this as a confirmatory analysis - they had a hypothesis (Trump tweets from an Android while his staffers use iPhone), and then tried a bunch of methods to see if they all confirm this.
+:::
 
 ### More Advanced Natural Language Processing
 
@@ -831,7 +849,17 @@ Source: \url{http://varianceexplained.org/r/trump-tweets/}
 
 All of the above can be based on Nueral Nets!
 
+:::notes
+There are many more NLP techniques out there!
+I want to highlight topic modelling because I find it super interesting.
+Just like k-means, you tell it how many topics you think there are in a collection of texts.
+It finds words that tend to be used together and puts them into categories.
+Yes, this is unsupervised learning for words!
+What's interesting is that it doesn't have to use all of the words, just the ones that make the strongest coherent topics.
+It doesn't label the topics, this is your job as a researcher.
+As I've said many times, the most important thing is to check whether your results make sense.
 
+:::
 
 
 # Meditative
@@ -845,6 +873,10 @@ Same ideas throughout:
 3. Learn to code
 4. Plot everything
 
+:::notes
+If you take nothing else from this workshop, at least understand these four points.
+:::
+
 ### Learning Path
 
 - Take notes on a basic coding tutorial\newline
@@ -855,6 +887,20 @@ Same ideas throughout:
 - Write a tutorial for yourself, share it on GitHub.\newline
 - Search Twitter, follow relevant topics/people
 
+:::notes
+If you want to learn how to fit these models and more, you're going to need to learn how to code.
+There are programs out there that claim to fit these models without needing to code, but you'll end up fighting with them in order to look at the model output in a useful way, or clicking the wrong option and changing everything about the analysis without realizing it.
+
+For the first few steps, I have included resources in the README file for this repo.
+I highly suggest finding a passion project that you can complete in a matter of days.
+By analysing data that you're passionate about, you're much more likely to dig further into the results.
+You'll know the context of the data already, and you'll know immediately if your model results don't make sense.
+
+As you go, take good notes and keep them concise and updated.
+If you find yourself going back to your notes and only looking at, say, the code, delete everything else!
+Keep your notes only to the things you for sure won't remember.
+:::
+
 ### Important things we didn't cover
 
 - **Data Cleaning** (don't use Excel)\newline
@@ -862,6 +908,19 @@ Same ideas throughout:
 - **Cross Validation**\newline
 - Version control and best practices (GitHub!)\newline
 - Scrutinizing data\newline
+
+:::notes
+There's a lot more to quantitative and qualitative analysis that I can't cover in one and a half hours!
+Data cleaning is not an exciting thing to cover, but it's immensely important.
+I don't recommend using Excel for anything analysis related.
+With code, you have a record of everything that changed in your data.
+Several times, I've completed most of an analysis and then received an updated version of the data, and then I forgot what I did.
+
+Another major topic not covered is Cross Validation.
+This topic is incredibly important for most of the analyses that we covered today.
+Basically, this gives you another, even better way of evaluating the models.
+I strongly recommend doing some research on Cross Validation before going forward with your analysis.
+:::
 
 ### R versus Python versus Other
 
@@ -872,7 +931,7 @@ Same ideas throughout:
 - RMarkdown is astounding
     - Black holes were imaged in Jupyter\newline
 - Both will work for any analysis
-    - Use what your colleagues use
+    - Basicaly, use what your colleagues use.
 
 FWIW, I used R for this workshop and code is available.
 
